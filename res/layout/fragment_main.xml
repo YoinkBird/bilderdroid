@@ -17,4 +17,5 @@
         android:onClick="sendMessage"
         android:text="@string/button_send" />
 
+
 </LinearLayout>
