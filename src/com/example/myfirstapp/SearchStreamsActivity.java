@@ -42,7 +42,7 @@ public class SearchStreamsActivity extends ActionBarActivity {
 		// Set the text view as the activity layout
 		if(true){
 			// Set the text view as the activity layout
-			setContentView(R.layout.fragment_display_message);
+			setContentView(R.layout.fragment_search_streams);
 			// get text view for json
 			TextView jsonTextView = (TextView) findViewById(R.id.display_json);
 			jsonTextView.setText(jsonReturnString);
@@ -119,7 +119,7 @@ public class SearchStreamsActivity extends ActionBarActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.display_message, menu);
+		getMenuInflater().inflate(R.menu.search_streams, menu);
 		return true;
 	}
 */
@@ -146,7 +146,7 @@ public class SearchStreamsActivity extends ActionBarActivity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_display_message,
+			View rootView = inflater.inflate(R.layout.fragment_search_streams,
 					container, false);
 			return rootView;
 		}

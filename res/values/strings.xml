@@ -9,7 +9,7 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="action_settings">Settings2</string>
     <string name="action_search">search</string>
-    <string name="title_activity_display_message">My Message</string>
+    <string name="title_activity_search_streams">Search Streams</string>
     <string name="hello_world">Hello world!</string>
 
     <!--  Search -->

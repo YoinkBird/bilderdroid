@@ -27,7 +27,7 @@
         </activity>
         <activity
             android:name=".SearchStreamsActivity"
-            android:label="@string/title_activity_display_message"
+            android:label="@string/title_activity_search_streams"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
