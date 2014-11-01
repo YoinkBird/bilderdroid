@@ -22,7 +22,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="sendMessage"
+        android:onClick="sendSearchQuery"
         android:text="@string/button_send" />
 
     <!-- note: leaving the 'onClick' blank causes the program to stop -->

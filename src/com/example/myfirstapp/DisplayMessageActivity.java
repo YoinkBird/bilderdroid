@@ -24,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class DisplayMessageActivity extends ActionBarActivity {
@@ -104,6 +105,15 @@ public class DisplayMessageActivity extends ActionBarActivity {
 			e.printStackTrace();
 		}
 		return builder.toString();
+	}
+	/** Called when the user clicks the Search button */
+	public void searchQuery(View view){
+		Intent intent = new Intent(this, DisplayMessageActivity.class);
+		EditText editText = (EditText) findViewById(R.id.search_term);
+		String message = editText.getText().toString();
+		String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+		intent.putExtra(EXTRA_MESSAGE, message);
+		startActivity(intent);
 	}
 /*
 	@Override
