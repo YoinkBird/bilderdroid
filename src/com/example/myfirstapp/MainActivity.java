@@ -34,11 +34,6 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		if (savedInstanceState == null) {
-			getFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
-		}
 
 		// Just for testing, allow network access in the main thread
 		// NEVER use this is productive code
@@ -48,13 +43,34 @@ public class MainActivity extends Activity {
 
 
 		//setContentView(R.layout.main);
-		String input = readBugzilla();
+		String jsonReturnString = readBugzilla();
 		try {
-			//JSONObject jsonObject = new JSONObject(input);
-			JSONArray jsonObject = new JSONArray(input);
+			//JSONObject jsonObject = new JSONObject(jsonReturnString);
+			JSONArray jsonObject = new JSONArray(jsonReturnString);
+			jsonReturnString = jsonObject.toString();
 			Log.i(MainActivity.class.getName(), jsonObject.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		
+		// create text view for json
+		// Create the text view
+		TextView jsonTextView = new TextView(this);
+		jsonTextView.setTextSize(40);
+		jsonTextView.setText(jsonReturnString);
+		Log.i(MainActivity.class.getName(), "jsonTextView: " + jsonTextView.toString());
+		Log.i(MainActivity.class.getName(), "json Text: " + jsonReturnString);
+		
+		if(true){
+			// Set the text view as the activity layout
+			setContentView(jsonTextView);
+		}
+		else{
+			setContentView(R.layout.activity_main);
+			if (savedInstanceState == null) {
+				getFragmentManager().beginTransaction()
+				.add(R.id.container, new PlaceholderFragment()).commit();
+			}
 		}
 
 	}
