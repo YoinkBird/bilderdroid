@@ -38,7 +38,8 @@ public class SearchStreamsActivity extends ActionBarActivity {
 		String searchTerm = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 		String jsonRequestURL = "http://fizzenglorp.appspot.com/genericquery?redirect=0&term=" + searchTerm;
 		
-		String jsonReturnString = getJsonString(jsonRequestURL);
+		CustomJson customJsonObj = new CustomJson();
+		String jsonReturnString = customJsonObj.getJsonString(jsonRequestURL);
 		// Set the text view as the activity layout
 		if(true){
 			// Set the text view as the activity layout
@@ -57,54 +58,6 @@ public class SearchStreamsActivity extends ActionBarActivity {
 		}
 		
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-	}
-	public String getJsonString(String httpUrl) {
-		// Just for testing, allow network access in the main thread
-		// NEVER use this is productive code
-		StrictMode.ThreadPolicy policy = new StrictMode.
-				ThreadPolicy.Builder().permitAll().build();
-		StrictMode.setThreadPolicy(policy); 
-
-
-		//setContentView(R.layout.main);
-		String jsonReturnString = sendHttpRequest(httpUrl);
-		try {
-			//JSONObject jsonObject = new JSONObject(jsonReturnString);
-			JSONArray jsonObject = new JSONArray(jsonReturnString);
-			jsonReturnString = jsonObject.toString();
-			Log.i(this.getClass().getSimpleName(), jsonObject.toString());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return jsonReturnString;
-	}
-	public String sendHttpRequest(String httpUrl) {
-		StringBuilder builder = new StringBuilder();
-		HttpClient client = new DefaultHttpClient();
-		//String httpUrl = "https://bugzilla.mozilla.org/rest/bug?assigned_to=lhenry@mozilla.com";
-		//httpUrl = "http://fizzenglorp.appspot.com/genericquery?redirect=0&term=test";
-		HttpGet httpGet = new HttpGet(httpUrl);
-		try {
-			HttpResponse response = client.execute(httpGet);
-			StatusLine statusLine = response.getStatusLine();
-			int statusCode = statusLine.getStatusCode();
-			if (statusCode == 200) {
-				HttpEntity entity = response.getEntity();
-				InputStream content = entity.getContent();
-				BufferedReader reader = new BufferedReader(new InputStreamReader(content));
-				String line;
-				while ((line = reader.readLine()) != null) {
-					builder.append(line);
-				}
-			} else {
-				//Log.e(ParseJSON.class.toString(), "Failed to download file");
-			}
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return builder.toString();
 	}
 	/** Called when the user clicks the Search button */
 	public void searchQuery(View view){
