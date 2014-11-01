@@ -12,4 +12,9 @@
     <string name="title_activity_display_message">My Message</string>
     <string name="hello_world">Hello world!</string>
 
+    <!--  Search -->
+    <string name="search_term_hint">Search Streams</string>
+    <string name="search_results_summary_string">TODO: $num results for $query\nClick on an image to view stream</string>
+    <string name="search_more_results_button">More Search Results</string>
+    <!--  /Search -->
 </resources>
