@@ -63,7 +63,9 @@ public class MainActivity extends Activity {
 		
 		if(true){
 			// Set the text view as the activity layout
-			setContentView(jsonTextView);
+			setContentView(R.layout.fragment_main);
+			TextView textView = (TextView) findViewById(R.id.display_json);
+			textView.setText(jsonReturnString);
 		}
 		else{
 			setContentView(R.layout.activity_main);
