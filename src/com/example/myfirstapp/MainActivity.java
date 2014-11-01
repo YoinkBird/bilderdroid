@@ -35,6 +35,28 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		
+
+		String jsonReturnString = getJsonString();
+		if(true){
+			// Set the text view as the activity layout
+			setContentView(R.layout.fragment_main);
+			// get text view for json
+			TextView jsonTextView = (TextView) findViewById(R.id.display_json);
+			jsonTextView.setText(jsonReturnString);
+			//Log.i(MainActivity.class.getName(), "jsonTextView: " + jsonTextView.toString());
+			//Log.i(MainActivity.class.getName(), "json Text: " + jsonReturnString);
+		}
+		else{
+			setContentView(R.layout.activity_main);
+			if (savedInstanceState == null) {
+				getFragmentManager().beginTransaction()
+				.add(R.id.container, new PlaceholderFragment()).commit();
+			}
+		}
+
+	}
+	public String getJsonString() {
 		// Just for testing, allow network access in the main thread
 		// NEVER use this is productive code
 		StrictMode.ThreadPolicy policy = new StrictMode.
@@ -52,24 +74,7 @@ public class MainActivity extends Activity {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		if(true){
-			// Set the text view as the activity layout
-			setContentView(R.layout.fragment_main);
-			// get text view for json
-			TextView jsonTextView = (TextView) findViewById(R.id.display_json);
-			jsonTextView.setText(jsonReturnString);
-			Log.i(MainActivity.class.getName(), "jsonTextView: " + jsonTextView.toString());
-			Log.i(MainActivity.class.getName(), "json Text: " + jsonReturnString);
-		}
-		else{
-			setContentView(R.layout.activity_main);
-			if (savedInstanceState == null) {
-				getFragmentManager().beginTransaction()
-				.add(R.id.container, new PlaceholderFragment()).commit();
-			}
-		}
-
+		return jsonReturnString;
 	}
 	public String readBugzilla() {
 		StringBuilder builder = new StringBuilder();
