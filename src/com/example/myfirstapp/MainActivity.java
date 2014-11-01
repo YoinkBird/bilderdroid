@@ -74,4 +74,19 @@ public class MainActivity extends Activity {
 		intent.putExtra(EXTRA_MESSAGE, message);
 		startActivity(intent);
 	}
+
+	/** Called when the user clicks the 'Stop App' button */
+	/** see also http://stackoverflow.com/a/4153842
+	 * */
+	public void stopApplication(View view){
+		//POC: show that this function is being called by updating the text input field
+		if(false){
+			EditText editText = (EditText) findViewById(R.id.edit_message);
+			editText.setText("defaultvalue");
+		}
+		// end program lifecycle 
+		else{
+			finish();
+		}
+	}
 }

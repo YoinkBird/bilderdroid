@@ -17,5 +17,13 @@
         android:onClick="sendMessage"
         android:text="@string/button_send" />
 
+    <!-- note: leaving the 'onClick' blank causes the program to stop -->
+    <!-- see also: http://stackoverflow.com/a/4153842 -->
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="stopApplication"
+        android:text="@string/button_stopapp" />
 
 </LinearLayout>
