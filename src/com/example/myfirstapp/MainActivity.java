@@ -36,8 +36,10 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		
+		String searchTerm = "test";
+		String jsonRequestURL = "http://fizzenglorp.appspot.com/genericquery?redirect=0&term=" + searchTerm;
 
-		String jsonReturnString = getJsonString();
+		String jsonReturnString = getJsonString(jsonRequestURL);
 		if(true){
 			// Set the text view as the activity layout
 			setContentView(R.layout.fragment_main);
@@ -56,7 +58,7 @@ public class MainActivity extends Activity {
 		}
 
 	}
-	public String getJsonString() {
+	public String getJsonString(String httpUrl) {
 		// Just for testing, allow network access in the main thread
 		// NEVER use this is productive code
 		StrictMode.ThreadPolicy policy = new StrictMode.
@@ -65,7 +67,7 @@ public class MainActivity extends Activity {
 
 
 		//setContentView(R.layout.main);
-		String jsonReturnString = readBugzilla();
+		String jsonReturnString = sendHttpRequest(httpUrl);
 		try {
 			//JSONObject jsonObject = new JSONObject(jsonReturnString);
 			JSONArray jsonObject = new JSONArray(jsonReturnString);
@@ -76,11 +78,11 @@ public class MainActivity extends Activity {
 		}
 		return jsonReturnString;
 	}
-	public String readBugzilla() {
+	public String sendHttpRequest(String httpUrl) {
 		StringBuilder builder = new StringBuilder();
 		HttpClient client = new DefaultHttpClient();
-		String httpUrl = "https://bugzilla.mozilla.org/rest/bug?assigned_to=lhenry@mozilla.com";
-		httpUrl = "http://fizzenglorp.appspot.com/genericquery?redirect=0&term=test";
+		//String httpUrl = "https://bugzilla.mozilla.org/rest/bug?assigned_to=lhenry@mozilla.com";
+		//httpUrl = "http://fizzenglorp.appspot.com/genericquery?redirect=0&term=test";
 		HttpGet httpGet = new HttpGet(httpUrl);
 		try {
 			HttpResponse response = client.execute(httpGet);
