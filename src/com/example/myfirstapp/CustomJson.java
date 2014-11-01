@@ -25,13 +25,6 @@ public class CustomJson {
 
 
 	public String getJsonString(String httpUrl) {
-		// Just for testing, allow network access in the main thread
-		// NEVER use this is productive code
-		StrictMode.ThreadPolicy policy = new StrictMode.
-				ThreadPolicy.Builder().permitAll().build();
-		StrictMode.setThreadPolicy(policy); 
-
-
 		//setContentView(R.layout.main);
 		String jsonReturnString = sendHttpRequest(httpUrl);
 		try {
@@ -45,6 +38,12 @@ public class CustomJson {
 		return jsonReturnString;
 	}
 	public String sendHttpRequest(String httpUrl) {
+		// Just for testing, allow network access in the main thread
+		// NEVER use this is productive code
+		StrictMode.ThreadPolicy policy = new StrictMode.
+				ThreadPolicy.Builder().permitAll().build();
+		StrictMode.setThreadPolicy(policy); 
+
 		StringBuilder builder = new StringBuilder();
 		HttpClient client = new DefaultHttpClient();
 		//String httpUrl = "https://bugzilla.mozilla.org/rest/bug?assigned_to=lhenry@mozilla.com";
