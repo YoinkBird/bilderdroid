@@ -1,32 +1,15 @@
 package com.example.myfirstapp;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 
 public class MainActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
@@ -100,18 +83,4 @@ public class MainActivity extends Activity {
 		startActivity(intent);
 	}
 
-	/** Called when the user clicks the 'Stop App' button */
-	/** see also http://stackoverflow.com/a/4153842
-	 * */
-	public void stopApplication(View view){
-		//POC: show that this function is being called by updating the text input field
-		if(false){
-			EditText editText = (EditText) findViewById(R.id.edit_message);
-			editText.setText("defaultvalue");
-		}
-		// end program lifecycle 
-		else{
-			finish();
-		}
-	}
 }

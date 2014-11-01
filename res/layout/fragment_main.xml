@@ -25,20 +25,8 @@
         android:onClick="sendSearchQuery"
         android:text="@string/button_send" />
 
-    <!-- note: leaving the 'onClick' blank causes the program to stop -->
-    <!-- see also: http://stackoverflow.com/a/4153842 -->
+    <!-- Note about 'onClick' : http://stackoverflow.com/a/4153842 -->
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="stopApplication"
-        android:text="@string/button_stopapp" />
-
-    <TextView
-        android:id="@+id/display_json"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/display_json" />
 
 </LinearLayout>
 
