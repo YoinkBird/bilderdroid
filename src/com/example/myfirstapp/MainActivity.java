@@ -53,19 +53,14 @@ public class MainActivity extends Activity {
 			e.printStackTrace();
 		}
 		
-		// create text view for json
-		// Create the text view
-		TextView jsonTextView = new TextView(this);
-		jsonTextView.setTextSize(40);
-		jsonTextView.setText(jsonReturnString);
-		Log.i(MainActivity.class.getName(), "jsonTextView: " + jsonTextView.toString());
-		Log.i(MainActivity.class.getName(), "json Text: " + jsonReturnString);
-		
 		if(true){
 			// Set the text view as the activity layout
 			setContentView(R.layout.fragment_main);
-			TextView textView = (TextView) findViewById(R.id.display_json);
-			textView.setText(jsonReturnString);
+			// get text view for json
+			TextView jsonTextView = (TextView) findViewById(R.id.display_json);
+			jsonTextView.setText(jsonReturnString);
+			Log.i(MainActivity.class.getName(), "jsonTextView: " + jsonTextView.toString());
+			Log.i(MainActivity.class.getName(), "json Text: " + jsonReturnString);
 		}
 		else{
 			setContentView(R.layout.activity_main);
