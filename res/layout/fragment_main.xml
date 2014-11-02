@@ -2,14 +2,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:orientation="vertical" >
 
+    <!--  notes
+    http://developer.android.com/reference/android/view/ViewGroup.LayoutParams.html#attr_android:layout_height
+    layout_(height|width):
+    match_parent	The view should be as big as its parent (minus padding).
+    wrap_content	The view should be only big enough to enclose its content (plus padding).
+    0dp: take as much as needed
+    weight: priority
+     -->
     <EditText
         android:id="@+id/edit_message"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:hint="@string/edit_message" />
+
 
     <Button
         android:layout_width="wrap_content"
