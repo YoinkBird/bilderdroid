@@ -16,6 +16,15 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Toast;
 
+/* Note:
+ * Strategy to enable 'singlestream' is:
+ * add to 'loadLayoutByStreamType' with 'view_nearby_streams' layout
+ * in 'loadImagesByStreamType' use images from 'all streams' as the single-stream has not been enabled yet
+ * then:
+ * add layout for 'singleStream'
+ * in 'loadImagesByStreamType' enable single-stream images
+ */
+
 public class ViewAllStreamsActivity extends Activity {
 	public final static String DISPLAY_STREAM_SELECTOR = "com.example.myfirstapp.DISPLAY_STREAM_SELECTOR";
 
@@ -42,9 +51,16 @@ public class ViewAllStreamsActivity extends Activity {
 		gridview.setAdapter(tmpImgAdapter);
 
 		// click this to do that
+		/* IDEA:
+		 * create arraylist of streamnames, then use 'position' to index the streamname
+		 * instead of 'Toast' call 'view single stream' with the intent 'streamname'
+		 * 1. call view single stream (after toast displays)
+		 * 2. pass in stream id
+		*/
 		gridview.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 				Toast.makeText(ViewAllStreamsActivity.this, "" + position, Toast.LENGTH_SHORT).show();
+				startViewAllStreamsActivity(v, "single");
 			}
 		});
 	}
@@ -100,6 +116,9 @@ public class ViewAllStreamsActivity extends Activity {
 		if(streamType.equals("subscribed")){
 			layoutId = R.layout.fragment_view_all_streams;
 		}
+		if(streamType.equals("single")){
+			layoutId = R.layout.fragment_view_nearby_streams;
+		}
 		// load layout
 		setContentView(layoutId);
                 // configure buttons
@@ -113,6 +132,10 @@ public class ViewAllStreamsActivity extends Activity {
 		String[] thumbUrlStrArray = null;
 		//TODO: create simple URL to retrieve all images for a stream, all covers for all streams, etc
 		String jsonRequestURL = null;
+		//TMP hack to get 'single stream' page up and running
+		if(streamType.equals("single")){
+			streamType = "all";
+		}
 		if(streamType.equals("all")){
 			//json format: [{"streamid":"<streamid>","coverurl":"http://<url>"},]
 			jsonRequestURL = "http://fizzenglorp.appspot.com/viewallstreams?redirect=0";
