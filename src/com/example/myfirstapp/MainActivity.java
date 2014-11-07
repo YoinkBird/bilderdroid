@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
 
 		if(true){
 			// Set the text view as the activity layout
-			setContentView(R.layout.fragment_main);
+			setContentView(R.layout.fragment_login);
 		}
 		else{
 			setContentView(R.layout.activity_main);
