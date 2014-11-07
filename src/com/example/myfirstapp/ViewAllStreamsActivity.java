@@ -60,6 +60,7 @@ public class ViewAllStreamsActivity extends Activity {
 		gridview.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 				Toast.makeText(ViewAllStreamsActivity.this, "" + position, Toast.LENGTH_SHORT).show();
+				//TODO: this call may need to be flexible for nearby, all, etc
 				startViewAllStreamsActivity(v, "single");
 			}
 		});
@@ -197,6 +198,7 @@ public class ViewAllStreamsActivity extends Activity {
    private void setupButtonListeners(String streamType){
      setupButtonListeners_viewAllStreams();
      setupButtonListeners_viewNearbyStreams();
+     setupButtonListeners_viewSingleStream();
      /*
      if(streamType != null){
       //* calling with type not working for some reason
@@ -266,6 +268,46 @@ public class ViewAllStreamsActivity extends Activity {
              public void onClick(View v) {
                //TODO
                startViewAllStreamsActivity(v, "nearby");
+             }
+           }
+           );
+     }
+     // Add a listener to the 'view streams' button
+     Button viewAllStreamsButton = (Button) findViewById(R.id.button_view_all_streams);
+     if(viewAllStreamsButton != null){
+       viewAllStreamsButton.setOnClickListener(
+           new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+               //TODO
+               startViewAllStreamsActivity(v, "all");
+             }
+           }
+           );
+     }
+   }
+   // set up buttons for the 'View Nearby Streams' layout
+   private void setupButtonListeners_viewSingleStream(){
+     Button morePicturesButton = (Button) findViewById(R.id.button_viewsinglestream_more_pictures);
+     if(morePicturesButton != null){
+       morePicturesButton.setOnClickListener(
+           new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+               //TODO
+               startViewAllStreamsActivity(v, "single");
+             }
+           }
+           );
+     }
+     Button uploadPicturesButton = (Button) findViewById(R.id.button_viewsinglestream_upload);
+     if(uploadPicturesButton != null){
+       uploadPicturesButton.setOnClickListener(
+           new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+               //TODO
+//               startUploadImageActivity(v, "single");
              }
            }
            );
