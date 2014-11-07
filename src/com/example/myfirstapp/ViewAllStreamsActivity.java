@@ -3,6 +3,7 @@ package com.example.myfirstapp;
 import org.json.JSONArray;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -10,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -19,6 +22,7 @@ public class ViewAllStreamsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fragment_view_all_streams);
+		setupButtonListeners();
 
 		String[] mTestThumbUrls;
 		String searchTerm = "android";
@@ -68,4 +72,27 @@ public class ViewAllStreamsActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	// buttons
+	/** Called when the user clicks the button for 'search' */
+	public void sendSearchQuery(View view){
+		Intent intent = new Intent(this, SearchStreamsActivity.class);
+		String message = "";
+		EditText editText = (EditText) findViewById(R.id.editText_search_streams);
+		message = editText.getText().toString();
+		intent.putExtra(MainActivity.EXTRA_MESSAGE, message);
+		startActivity(intent);
+	}
+   private void setupButtonListeners(){
+	 // listen to the button for 'search'
+     Button searchResultsButton = (Button) findViewById(R.id.button_search_streams);
+     searchResultsButton.setOnClickListener(
+         new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+        	   //TODO
+        	   sendSearchQuery(v);
+           }
+         }
+         );
+   }
 }
