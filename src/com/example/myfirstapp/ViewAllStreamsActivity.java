@@ -26,19 +26,7 @@ public class ViewAllStreamsActivity extends Activity {
 		setupButtonListeners();
 
 		// parse intent to determine what to do
-		/* Either:
-		 * * show latest streams (default)
-		 * * show latest subscribed streams (button)
-		 * * show nearby streams (button)
-		 */
-		String displayStreams = "all";
-		Intent intent = getIntent();
-		//TODO: remove hardcode for testing
-		displayStreams = intent.getStringExtra(ViewAllStreamsActivity.DISPLAY_STREAM_SELECTOR);
-		if(displayStreams == null){
-			displayStreams = "all";
-		}
-		Log.i(this.getClass().getSimpleName(),  "DISPLAY_STREAM_SELECTOR - displayStreams: " + displayStreams);
+		String displayStreams = determineStreamType();
 
 		// get images
 		String[] mTestThumbUrls = null;
@@ -77,6 +65,25 @@ public class ViewAllStreamsActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	// determine type of stream to display
+	private String determineStreamType (){
+		// parse intent to determine what to do
+		/* Either:
+		 * * show latest streams (default)
+		 * * show latest subscribed streams (button)
+		 * * show nearby streams (button)
+		 */
+		String displayStreams = "all";
+		Intent intent = getIntent();
+		//TODO: remove hardcode for testing
+		displayStreams = intent.getStringExtra(ViewAllStreamsActivity.DISPLAY_STREAM_SELECTOR);
+		if(displayStreams == null){
+			displayStreams = "all";
+		}
+		Log.i(this.getClass().getSimpleName(),  "DISPLAY_STREAM_SELECTOR - displayStreams: " + displayStreams);
+		
+		return displayStreams;
 	}
 	
 	// load images based on stream view type (e.g. all, nearby, subscribed, etc)
