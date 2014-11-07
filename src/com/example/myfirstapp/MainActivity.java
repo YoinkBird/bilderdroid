@@ -83,6 +83,13 @@ public class MainActivity extends Activity {
 		intent.putExtra(EXTRA_MESSAGE, message);
 		startActivity(intent);
 	}
+	/** Called when the user clicks the Send button */
+	public void startViewAllStreamsActivity(View view){
+		Intent intent = new Intent(this, ViewAllStreamsActivity.class);
+		String message = "android";
+		intent.putExtra(EXTRA_MESSAGE, message);
+		startActivity(intent);
+	}
 
    private void setupButtonListeners(){
      // Add a listener to the 'view streams' button
@@ -92,8 +99,7 @@ public class MainActivity extends Activity {
            @Override
            public void onClick(View v) {
         	   //TODO
-//        	   startViewAllStreamsActivity(v);
-        	   sendSearchQuery(v);
+        	   startViewAllStreamsActivity(v);
            }
          }
          );
