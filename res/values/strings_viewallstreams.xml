@@ -2,4 +2,9 @@
 <resources>
 
     <string name="title_activity_view_all_streams">ViewAllStreamsActivity</string>
+
+    <string name="viewallstreams_input_find_streams">Find Streams</string>
+    <string name="viewallstreams_button_search">Search</string>
+    <string name="viewallstreams_button_find_nearby">Nearby</string>
+    <string name="viewallstreams_button_subscribed">My Subscribed Streams</string>
 </resources>

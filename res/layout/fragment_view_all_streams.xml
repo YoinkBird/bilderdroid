@@ -8,16 +8,57 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.myfirstapp.ViewAllStreamsActivity$PlaceholderFragment" >
 
+    <!-- Note: red text on button indicates incomplete feature. 
+    android:textColor="#FF0000" -->
     <GridView
-    android:id="@+id/gridview"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:columnWidth="90dp"
-    android:numColumns="auto_fit"
-    android:verticalSpacing="10dp"
-    android:horizontalSpacing="10dp"
-    android:stretchMode="columnWidth"
-    android:gravity="center"
-    />
+        android:textColorHint="#FF0000"
+        android:id="@+id/gridview"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:columnWidth="90dp"
+        android:gravity="center"
+        android:horizontalSpacing="10dp"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dp" />
+
+    <EditText
+        android:textColorHint="#FF0000"
+        android:id="@+id/editText_search_streams"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gridview"
+        android:hint="@string/viewallstreams_input_find_streams"
+        android:ems="10" android:inputType="text">
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:textColor="#FF0000"
+        android:id="@+id/button_search_streams"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText_search_streams"
+        android:layout_below="@+id/editText_search_streams"
+        android:text="@string/viewallstreams_button_search" />
+
+    <Button
+        android:textColor="#FF0000"
+        android:id="@+id/button_find_nearby_streams"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_search_streams"
+        android:text="@string/viewallstreams_button_find_nearby" />
+
+    <Button
+        android:textColor="#FF0000"
+        android:id="@+id/button_subscribed_streams"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button_find_nearby_streams"
+        android:layout_below="@+id/button_find_nearby_streams"
+        android:text="@string/viewallstreams_button_subscribed" />
 
 </RelativeLayout>
