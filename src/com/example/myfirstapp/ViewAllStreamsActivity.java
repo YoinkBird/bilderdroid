@@ -22,11 +22,13 @@ public class ViewAllStreamsActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.fragment_view_all_streams);
-		setupButtonListeners();
 
 		// parse intent to determine what to do
 		String displayStreamType = determineStreamType();
+		
+		// set up layout
+		loadLayoutByStreamType(displayStreamType);
+		setupButtonListeners();
 
 		// get images
 		String[] mTestThumbUrls = null;
@@ -84,6 +86,24 @@ public class ViewAllStreamsActivity extends Activity {
 		Log.i(this.getClass().getSimpleName(),  "DISPLAY_STREAM_SELECTOR - displayStreams: " + displayStreams);
 		
 		return displayStreams;
+	}
+	
+	private void loadLayoutByStreamType(String streamType){
+		// store the layout id to load - default is 'all streams'
+		int layoutId = R.layout.fragment_view_all_streams;
+		// choose layout based on streamtype
+		if(streamType.equals("all")){
+			layoutId = R.layout.fragment_view_all_streams;
+		}
+		if(streamType.equals("nearby")){
+			layoutId = R.layout.fragment_view_all_streams;
+		}
+		if(streamType.equals("subscribed")){
+			layoutId = R.layout.fragment_view_all_streams;
+		}
+		// load layout
+		setContentView(layoutId);
+		return;
 	}
 	
 	// load images based on stream view type (e.g. all, nearby, subscribed, etc)
