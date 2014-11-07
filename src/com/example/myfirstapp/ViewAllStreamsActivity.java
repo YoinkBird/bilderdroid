@@ -31,35 +31,28 @@ public class ViewAllStreamsActivity extends Activity {
 		 * * show latest subscribed streams (button)
 		 * * show nearby streams (button)
 		 */
-		String searchTerm = null;
-		String jsonRequestURL = null;
 		String displayStreams = "all";
 		Intent intent = getIntent();
 		//TODO: remove hardcode for testing
-		searchTerm = "android";
-//		searchTerm = intent.getStringExtra(ViewAllStreamsActivity.DISPLAY_STREAM_SELECTOR);
 		displayStreams = intent.getStringExtra(ViewAllStreamsActivity.DISPLAY_STREAM_SELECTOR);
 		if(displayStreams == null){
 			displayStreams = "all";
 		}
-		jsonRequestURL = "http://fizzenglorp.appspot.com/genericquery?redirect=0&term=" + searchTerm;
-		Log.i(this.getClass().getSimpleName(),  "DISPLAY_STREAM_SELECTOR - searchTerm: " + searchTerm);
 		Log.i(this.getClass().getSimpleName(),  "DISPLAY_STREAM_SELECTOR - displayStreams: " + displayStreams);
 
+		// get images
 		String[] mTestThumbUrls = null;
-		//TODO: create simple URL to retrieve all images for a stream, all covers for all streams, etc
-//		if(displayStreams == null){// || displayStreams.equals("all") || displayStreams == null){
-//		if(displayStreams == "all" || displayStreams == null){
 		mTestThumbUrls = loadImagesByStreamType(displayStreams);
-		GridView gridview = (GridView) findViewById(R.id.gridview);
-		//gridview.setAdapter(new ImageAdapter(this));
-		//TODO: set img array in constructor so anonymous creation can be done again
-		ImageAdapter tmpImgAdapter = new ImageAdapter(this);
-//		tmpImgAdapter.setThumbIds(mTestThumbIds);
 		Log.i(this.getClass().getSimpleName(), "mTestThumbUrls: " + mTestThumbUrls.toString());
+		// set up gridview
+		GridView gridview = (GridView) findViewById(R.id.gridview);
+		// do something wacky and ultimately add the images to the gridview
+		ImageAdapter tmpImgAdapter = new ImageAdapter(this);
 		tmpImgAdapter.setThumbUrls(mTestThumbUrls);
+		// do something wacky
 		gridview.setAdapter(tmpImgAdapter);
 
+		// click this to do that
 		gridview.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 				Toast.makeText(ViewAllStreamsActivity.this, "" + position, Toast.LENGTH_SHORT).show();
@@ -88,8 +81,9 @@ public class ViewAllStreamsActivity extends Activity {
 	
 	// load images based on stream view type (e.g. all, nearby, subscribed, etc)
 	private String[] loadImagesByStreamType(String streamType){
-		Log.i(this.getClass().getSimpleName(),  "in loadImagesByStreamType");
+		Log.i(this.getClass().getSimpleName(),  "in method: loadImagesByStreamType");
 		String[] thumbUrlStrArray = null;
+		//TODO: create simple URL to retrieve all images for a stream, all covers for all streams, etc
 		String jsonRequestURL = null;
 		if(streamType.equals("all")){
 			//json format: [{"streamid":"<streamid>","coverurl":"http://<url>"},]
@@ -115,7 +109,7 @@ public class ViewAllStreamsActivity extends Activity {
 			CustomJsonBilderapp customJsonBilderappObj = new CustomJsonBilderapp();
 			thumbUrlStrArray = customJsonBilderappObj.parseJsonFromViewAllStreams(jsonImgArray);
 		}
-		if(streamType.equals("subscribed")){// == "subscribed"){
+		if(streamType.equals("subscribed")){
 			//TODO: determine the json format: [{"streamid":"<streamid>","coverurl":"http://<url>"},]
 			//TODO: implement this api; using the 'viewall' for now as a placeholder
 			jsonRequestURL = "http://fizzenglorp.appspot.com/viewallstreams?redirect=0";
