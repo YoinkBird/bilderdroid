@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 public class ViewAllStreamsActivity extends Activity {
 	public final static String DISPLAY_STREAM_SELECTOR = "com.example.myfirstapp.DISPLAY_STREAM_SELECTOR";
+	public final static String STREAMID_SELECTOR       = "com.example.myfirstapp.STREAMID_SELECTOR";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +61,10 @@ public class ViewAllStreamsActivity extends Activity {
 		*/
 		gridview.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+				String testStreamId = "android_grid_test";
 				Toast.makeText(ViewAllStreamsActivity.this, "" + position, Toast.LENGTH_SHORT).show();
 				//TODO: this call may need to be flexible for nearby, all, etc
-				startViewAllStreamsActivity(v, "single");
+				startViewAllStreamsActivity(v, "single", testStreamId);
 			}
 		});
 	}
@@ -84,6 +86,19 @@ public class ViewAllStreamsActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	// determine whether streamId specified, if so, return it
+	//caveat: if none specified this is not going to be fun
+	private String getStreamId (){
+		String streamId = null;
+		// get intent, check if null
+		Intent intent = getIntent();
+		String streamIdSelector = intent.getStringExtra(ViewAllStreamsActivity.STREAMID_SELECTOR);
+		if(streamIdSelector != null){
+			streamId = streamIdSelector;
+		}
+		streamId = "android_grid_test";
+		return streamId;
 	}
 	// determine type of stream to display
 	private String determineStreamType (){
@@ -145,11 +160,12 @@ public class ViewAllStreamsActivity extends Activity {
 			CustomJsonBilderapp customJsonBilderappObj = new CustomJsonBilderapp();
 			thumbUrlStrArray = customJsonBilderappObj.parseJsonFromViewAllStreams(jsonImgArray);
 		}
+		// caveat: don't call this without an argument
 		if(streamType.equals("single")){
-			//TODO: remove this hard-coded streamname
-			String searchTerm = "testnew";
-			searchTerm = "android_grid_test";
-			//TODO: this returns 'img src=...' for the javascript map; needs to be fixed!
+			String searchTerm = null;
+			//caveat: if none specified this is not going to be fun
+			searchTerm = getStreamId();
+			//TODOne: this returns 'img src=...' for the javascript map; needs to be fixed!
 			jsonRequestURL = "http://fizzenglorp.appspot.com/viewsinglestream?geoview=0&stream_id=" + searchTerm;
 			Log.i(this.getClass().getSimpleName(),  "jsonRequestURL for " + streamType + ": " + jsonRequestURL.toString());
 			// Get the JSON Array or Object
@@ -200,6 +216,13 @@ public class ViewAllStreamsActivity extends Activity {
 	public void startViewAllStreamsActivity(View view, String streamType){
 		Intent intent = new Intent(this, ViewAllStreamsActivity.class);
 		intent.putExtra(DISPLAY_STREAM_SELECTOR, streamType);
+		startActivity(intent);
+	}
+	/** Called when the user clicks one of the grid elements */
+	public void startViewAllStreamsActivity(View view, String streamType, String streamName){
+		Intent intent = new Intent(this, ViewAllStreamsActivity.class);
+		intent.putExtra(DISPLAY_STREAM_SELECTOR, streamType);
+		intent.putExtra(STREAMID_SELECTOR, streamName);
 		startActivity(intent);
 	}
 
