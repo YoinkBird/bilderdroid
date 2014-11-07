@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends Activity {
@@ -21,6 +22,7 @@ public class MainActivity extends Activity {
 		if(true){
 			// Set the text view as the activity layout
 			setContentView(R.layout.fragment_login);
+			setupButtonListeners();
 		}
 		else{
 			setContentView(R.layout.activity_main);
@@ -77,10 +79,33 @@ public class MainActivity extends Activity {
 	/** Called when the user clicks the Send button */
 	public void sendSearchQuery(View view){
 		Intent intent = new Intent(this, SearchStreamsActivity.class);
-		EditText editText = (EditText) findViewById(R.id.edit_message);
-		String message = editText.getText().toString();
+		String message = "";
 		intent.putExtra(EXTRA_MESSAGE, message);
 		startActivity(intent);
 	}
 
+   private void setupButtonListeners(){
+     // Add a listener to the 'view streams' button
+     Button viewAllStreamsButton = (Button) findViewById(R.id.button_view_all_streams);
+     viewAllStreamsButton.setOnClickListener(
+         new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+        	   //TODO
+//        	   startViewAllStreamsActivity(v);
+        	   sendSearchQuery(v);
+           }
+         }
+         );
+     // Add a listener to the 'Login' button
+     Button loginGmailButton = (Button) findViewById(R.id.button_login_gmail);
+     loginGmailButton.setOnClickListener(
+         new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+        	   //TODO
+           }
+         }
+         );
+   }
 }
