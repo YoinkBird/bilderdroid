@@ -28,7 +28,6 @@ public class ViewAllStreamsActivity extends Activity {
 		
 		// set up layout
 		loadLayoutByStreamType(displayStreamType);
-		setupButtonListeners();
 
 		// get images
 		String[] mTestThumbUrls = null;
@@ -103,6 +102,8 @@ public class ViewAllStreamsActivity extends Activity {
 		}
 		// load layout
 		setContentView(layoutId);
+                // configure buttons
+		setupButtonListeners();
 		return;
 	}
 	
@@ -168,6 +169,13 @@ public class ViewAllStreamsActivity extends Activity {
 	}
 
    private void setupButtonListeners(){
+     setupButtonListeners(null);
+   }
+   private void setupButtonListeners(String streamType){
+     setupButtonListeners_viewAllStreams();
+   }
+   // set up buttons for the 'View All Streams' layout
+   private void setupButtonListeners_viewAllStreams(){
 	 // listen to the button for 'search'
      Button searchResultsButton = (Button) findViewById(R.id.button_search_streams);
      if(searchResultsButton != null){
