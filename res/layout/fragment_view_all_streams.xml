@@ -32,7 +32,6 @@
         android:hint="@string/viewallstreams_input_find_streams"
         android:ems="10" android:inputType="text">
 
-        <requestFocus />
     </EditText>
 
     <Button
