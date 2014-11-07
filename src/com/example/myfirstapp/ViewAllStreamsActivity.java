@@ -1,6 +1,7 @@
 package com.example.myfirstapp;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -133,10 +134,6 @@ public class ViewAllStreamsActivity extends Activity {
 		String[] thumbUrlStrArray = null;
 		//TODO: create simple URL to retrieve all images for a stream, all covers for all streams, etc
 		String jsonRequestURL = null;
-		//TMP hack to get 'single stream' page up and running
-		if(streamType.equals("single")){
-			streamType = "all";
-		}
 		if(streamType.equals("all")){
 			//json format: [{"streamid":"<streamid>","coverurl":"http://<url>"},]
 			jsonRequestURL = "http://fizzenglorp.appspot.com/viewallstreams?redirect=0";
@@ -147,6 +144,20 @@ public class ViewAllStreamsActivity extends Activity {
 			// Get data from the JSON Array or Object
 			CustomJsonBilderapp customJsonBilderappObj = new CustomJsonBilderapp();
 			thumbUrlStrArray = customJsonBilderappObj.parseJsonFromViewAllStreams(jsonImgArray);
+		}
+		if(streamType.equals("single")){
+			//TODO: remove this hard-coded streamname
+			String searchTerm = "testnew";
+			searchTerm = "android_grid_test";
+			//TODO: this returns 'img src=...' for the javascript map; needs to be fixed!
+			jsonRequestURL = "http://fizzenglorp.appspot.com/viewsinglestream?geoview=0&stream_id=" + searchTerm;
+			Log.i(this.getClass().getSimpleName(),  "jsonRequestURL for " + streamType + ": " + jsonRequestURL.toString());
+			// Get the JSON Array or Object
+			CustomJson customJsonObj = new CustomJson();
+			JSONObject jsonImgObject = customJsonObj.getJsonObject(jsonRequestURL);
+			// Get data from the JSON Array or Object
+			CustomJsonBilderapp customJsonBilderappObj = new CustomJsonBilderapp();
+			thumbUrlStrArray = customJsonBilderappObj.parseJsonFromViewSingleStream(jsonImgObject);
 		}
 		if(streamType.equals("nearby")){
 			//TODO: determine the json format: [{"streamid":"<streamid>","coverurl":"http://<url>"},]
