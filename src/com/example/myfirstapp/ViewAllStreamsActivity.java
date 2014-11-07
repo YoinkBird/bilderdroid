@@ -173,6 +173,23 @@ public class ViewAllStreamsActivity extends Activity {
    }
    private void setupButtonListeners(String streamType){
      setupButtonListeners_viewAllStreams();
+     setupButtonListeners_viewNearbyStreams();
+     /*
+     if(streamType != null){
+      //* calling with type not working for some reason
+      //* was intended to be called from loadLayoutByStreamType with
+      //* setupButtonListeners(streamType)
+       if(streamType.equals("all")){
+         setupButtonListeners_viewAllStreams();
+       }
+       if(streamType.equals("subscribed")){
+         setupButtonListeners_viewAllStreams();
+       }
+       if(streamType.equals("nearby")){
+//         setupButtonListeners_viewNearbyStreams();
+       }
+     }
+     */
    }
    // set up buttons for the 'View All Streams' layout
    private void setupButtonListeners_viewAllStreams(){
@@ -215,5 +232,33 @@ public class ViewAllStreamsActivity extends Activity {
            }
            );
        }
+   }
+   // set up buttons for the 'View Nearby Streams' layout
+   private void setupButtonListeners_viewNearbyStreams(){
+     Button morePicturesButton = (Button) findViewById(R.id.button_viewnearbystreams_more_pictures);
+     if(morePicturesButton != null){
+       morePicturesButton.setOnClickListener(
+           new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+               //TODO
+               startViewAllStreamsActivity(v, "nearby");
+             }
+           }
+           );
+     }
+     // Add a listener to the 'view streams' button
+     Button viewAllStreamsButton = (Button) findViewById(R.id.button_view_all_streams);
+     if(viewAllStreamsButton != null){
+       viewAllStreamsButton.setOnClickListener(
+           new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+               //TODO
+               startViewAllStreamsActivity(v, "all");
+             }
+           }
+           );
+     }
    }
 }
