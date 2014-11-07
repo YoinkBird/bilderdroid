@@ -26,11 +26,11 @@ public class ViewAllStreamsActivity extends Activity {
 		setupButtonListeners();
 
 		// parse intent to determine what to do
-		String displayStreams = determineStreamType();
+		String displayStreamType = determineStreamType();
 
 		// get images
 		String[] mTestThumbUrls = null;
-		mTestThumbUrls = loadImagesByStreamType(displayStreams);
+		mTestThumbUrls = loadImagesByStreamType(displayStreamType);
 		Log.i(this.getClass().getSimpleName(), "mTestThumbUrls: " + mTestThumbUrls.toString());
 		// set up gridview
 		GridView gridview = (GridView) findViewById(R.id.gridview);
