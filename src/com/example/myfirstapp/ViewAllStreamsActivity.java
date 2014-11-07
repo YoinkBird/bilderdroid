@@ -60,10 +60,20 @@ public class ViewAllStreamsActivity extends Activity {
 		 * 2. pass in stream id
 		*/
 		gridview.setOnItemClickListener(new OnItemClickListener() {
+			// http://developer.android.com/reference/android/widget/AdapterView.OnItemClickListener.html
+			// parent:   adapterview where click happened
+			// view:     view that was clicked
+			// position: position of the view in the adapter
+			// id:       row id of clicked item
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-				String testStreamId = "android_grid_test";
 				Toast.makeText(ViewAllStreamsActivity.this, "" + position, Toast.LENGTH_SHORT).show();
+
+				Log.i(this.getClass().getSimpleName(), "adapterview: " + parent.toString());
+				Log.i(this.getClass().getSimpleName(), "adapterview: " + parent.getAdapter().getItemId(position));
+				Log.i(this.getClass().getSimpleName(), "adapterview: " + ((ImageAdapter) parent.getAdapter()).getStreamId(position));
+				String testStreamId = ((ImageAdapter) parent.getAdapter()).getStreamId(position);
 				//TODO: this call may need to be flexible for nearby, all, etc
+				Log.i(this.getClass().getSimpleName(), "testStreamId: " + testStreamId.toString());
 				startViewAllStreamsActivity(v, "single", testStreamId);
 			}
 		});
@@ -97,7 +107,6 @@ public class ViewAllStreamsActivity extends Activity {
 		if(streamIdSelector != null){
 			streamId = streamIdSelector;
 		}
-		streamId = "android_grid_test";
 		return streamId;
 	}
 	// determine type of stream to display

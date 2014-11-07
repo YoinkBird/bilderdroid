@@ -66,7 +66,14 @@ public class ImageAdapter extends BaseAdapter {
 
     //  getItemId(int) should return the row id of the item, but it's not needed here.
     public long getItemId(int position) {
-        return 0;
+        return 593; //relatively uncommon value to see if this function is getting called
+    }
+
+    // TODO: yo man, make this legit instead of returning some hard-coded junk, yeah?
+    public String getStreamId(int position) {
+    	String streamId = "android_grid_test";
+    	streamId = "grass";
+        return streamId;
     }
     
     /* define the array of images 
