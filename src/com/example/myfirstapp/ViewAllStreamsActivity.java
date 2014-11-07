@@ -170,36 +170,42 @@ public class ViewAllStreamsActivity extends Activity {
    private void setupButtonListeners(){
 	 // listen to the button for 'search'
      Button searchResultsButton = (Button) findViewById(R.id.button_search_streams);
-     searchResultsButton.setOnClickListener(
-         new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-        	   //TODO
-        	   sendSearchQuery(v);
+     if(searchResultsButton != null){
+       searchResultsButton.setOnClickListener(
+           new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                     //TODO
+                     sendSearchQuery(v);
+             }
            }
-         }
-         );
+           );
+     }
 	 // listen to the button for 'nearby'
      Button viewNearbyStreamsButton = (Button) findViewById(R.id.button_find_nearby_streams);
-     viewNearbyStreamsButton.setOnClickListener(
-         new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-        	   //TODO
-        	   startViewAllStreamsActivity(v, "nearby");
+     if(viewNearbyStreamsButton != null){
+       viewNearbyStreamsButton.setOnClickListener(
+           new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                     //TODO
+                     startViewAllStreamsActivity(v, "nearby");
+             }
            }
-         }
-         );
+           );
+     }
 	 // listen to the button for 'subscribed streams'
      Button viewSubscribedStreamsButton = (Button) findViewById(R.id.button_subscribed_streams);
-     viewSubscribedStreamsButton.setOnClickListener(
-         new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-        	   //TODO
-        	   startViewAllStreamsActivity(v, "subscribed");
+     if(viewSubscribedStreamsButton != null){
+       viewSubscribedStreamsButton.setOnClickListener(
+           new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                     //TODO
+                     startViewAllStreamsActivity(v, "subscribed");
+             }
            }
-         }
-         );
+           );
+       }
    }
 }

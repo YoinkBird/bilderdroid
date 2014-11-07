@@ -10,12 +10,23 @@
 
     <!-- Note: red text on button indicates incomplete feature. 
     android:textColor="#FF0000" -->
+    <TextView
+        android:textColorHint="#FF0000"
+        android:id="@+id/textView_viewnearbystreams_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/gridview"
+        android:layout_alignParentTop="true"
+        android:text="@string/viewnearbystreams_title_text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
     <GridView
         android:textColorHint="#FF0000"
         android:id="@+id/gridview"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textView_viewnearbystreams_title"
         android:columnWidth="90dp"
         android:gravity="center"
         android:horizontalSpacing="10dp"
@@ -24,36 +35,18 @@
         android:verticalSpacing="10dp" />
 
     <Button
-        android:id="@+id/button_search_streams"
+        android:id="@+id/button_viewnearbystreams_more_pictures"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/gridview"
-        android:text="@string/viewallstreams_button_search"
+        android:text="@string/viewnearbystreams_button_more_pictures"
         android:textColor="#FF0000" />
 
-    <Button
-        android:textColor="#FF0000"
-        android:id="@+id/button_find_nearby_streams"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button_search_streams"
-        android:text="@string/viewallstreams_button_find_nearby" />
-
-    <Button
-        android:textColor="#FF0000"
-        android:id="@+id/button_subscribed_streams"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button_find_nearby_streams"
-        android:layout_below="@+id/button_find_nearby_streams"
-        android:text="@string/viewallstreams_button_subscribed" />
     <Button
         android:id="@id/button_view_all_streams"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button_subscribed_streams"
-        android:layout_below="@+id/button_subscribed_streams"
+        android:layout_below="@+id/button_viewnearbystreams_more_pictures"
         android:text="@string/global_view_streams"
         android:textColor="#FF0000" />
-
 </RelativeLayout>
