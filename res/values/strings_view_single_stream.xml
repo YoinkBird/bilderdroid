@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title_activity_view_all_streams">View Single Streams</string>
+
+    <string name="viewsinglestream_title_text">View A Stream: TODO</string>
+    <string name="viewsinglestream_button_more_pictures">More Pictures</string>
+    <string name="viewsinglestream_button_upload">Upload an Image</string>
+</resources>

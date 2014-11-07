@@ -117,7 +117,7 @@ public class ViewAllStreamsActivity extends Activity {
 			layoutId = R.layout.fragment_view_all_streams;
 		}
 		if(streamType.equals("single")){
-			layoutId = R.layout.fragment_view_nearby_streams;
+			layoutId = R.layout.fragment_view_single_stream;
 		}
 		// load layout
 		setContentView(layoutId);
