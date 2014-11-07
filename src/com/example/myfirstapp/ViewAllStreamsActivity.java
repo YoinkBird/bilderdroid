@@ -1,10 +1,6 @@
 package com.example.myfirstapp;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.json.JSONArray;
-import org.json.JSONException;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -35,7 +31,8 @@ public class ViewAllStreamsActivity extends Activity {
 //			JSONArray jsonImgArray = getJsonArray(jsonRequestURL);
 			CustomJson customJsonObj = new CustomJson();
 			JSONArray jsonImgArray = customJsonObj.getJsonArray(jsonRequestURL);
-			mTestThumbUrls = parseJsonFromViewAllStreams(jsonImgArray);
+			CustomJsonBilderapp customJsonBilderappObj = new CustomJsonBilderapp();
+			mTestThumbUrls = customJsonBilderappObj.parseJsonFromViewAllStreams(jsonImgArray);
 		}
 		GridView gridview = (GridView) findViewById(R.id.gridview);
 		//gridview.setAdapter(new ImageAdapter(this));
@@ -51,29 +48,6 @@ public class ViewAllStreamsActivity extends Activity {
 				Toast.makeText(ViewAllStreamsActivity.this, "" + position, Toast.LENGTH_SHORT).show();
 			}
 		});
-	}
-	private String[] parseJsonFromViewAllStreams(JSONArray jsonImgArray){
-		//json format: [{"streamid":"<streamid>","coverurl":"http://<url>"},]
-		List<String> thumbUrlsArrayList = new ArrayList<String>();
-
-		for(int i = 0; i < jsonImgArray.length(); i++){
-			String imgUrl = null;
-			try {
-				imgUrl = jsonImgArray.getJSONObject(i).getString("coverurl");
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			//TODO: check the 'getJsonObject' return types instead of checking for != 'null'
-			if(imgUrl != null && imgUrl != "null"){
-				Log.i(this.getClass().getSimpleName(), "imgUrl: " + imgUrl.toString());
-				thumbUrlsArrayList.add(imgUrl);
-			}
-		}
-		String[] array = new String[thumbUrlsArrayList.size()];
-		Log.i(this.getClass().getSimpleName(), thumbUrlsArrayList.toString());
-		return  thumbUrlsArrayList.toArray(array);
-//		return  (String[]) thumbUrlsArrayList.toArray();
 	}
 
 	@Override
