@@ -96,7 +96,7 @@ public class ViewAllStreamsActivity extends Activity {
 			layoutId = R.layout.fragment_view_all_streams;
 		}
 		if(streamType.equals("nearby")){
-			layoutId = R.layout.fragment_view_all_streams;
+			layoutId = R.layout.fragment_view_nearby_streams;
 		}
 		if(streamType.equals("subscribed")){
 			layoutId = R.layout.fragment_view_all_streams;
