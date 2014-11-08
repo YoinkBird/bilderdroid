@@ -95,18 +95,6 @@ public class CameraActivity extends Activity {
            }
          }
          );
-     //TODO: move this to the correct view
-     // Add a listener to the 'Upload Picture' button
-     Button uploadPictureButton = (Button) findViewById(R.id.button_upload_picture);
-     uploadPictureButton.setOnClickListener(
-         new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-             // Upload hard-coded file-name
-             CustomUpload.postImage();
-           }
-         }
-         );
      // Add a listener to the 'View Streams' button
      Button viewAllStreamsButton = (Button) findViewById(R.id.button_upload_view_all_streams);
      if(viewAllStreamsButton != null){
