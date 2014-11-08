@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <!-- Note: red text on button indicates incomplete feature. 
+    android:textColor="#FF0000" -->
+    <TextView
+        android:id="@+id/textView_upload_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/upload_title"
+        android:textColor="#FF0000"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/button_upload_choose_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/upload_choose_file"
+        android:textColor="#FF0000" />
+
+    <EditText
+        android:id="@+id/editText_upload_stream_annotation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/upload_hint_annotation"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FF0000"
+        android:textColorHint="#FF0000"
+        android:inputType="text" />
+
+    <Button
+        android:textColor="#FF0000"
+        android:id="@+id/button_upload_use_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/upload_use_camera" />
+
+<Button
+    android:textColor="#FF0000"
+    android:id="@+id/button_upload_upload"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/upload_button_string" />
+
+<TextView
+    android:textColor="#FF0000"
+    android:textColorHint="#FF0000"
+    android:id="@+id/textView_uplaod_stream_title"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/upload_stream_title"
+    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</LinearLayout>

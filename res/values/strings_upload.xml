@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="upload_title">Upload</string>
+    <string name="upload_choose_file">Chose from your library</string>
+    <string name="upload_use_camera">Use Camera</string>
+    <string name="upload_hint_annotation">Add a message and/or tags</string>
+    <string name="upload_button_string">Upload</string>
+    <string name="upload_stream_title">Stream: TODO</string>
+</resources>
