@@ -89,6 +89,9 @@ public class CameraActivity extends Activity {
              // store the bitmap
         	   CustomStorage storeFileObj = new CustomStorage();
         	   storeFileObj.storeImage(bitmap);
+        	   // go to 'upload' page
+               Intent intent = new Intent(v.getContext(), UploadActivity.class);
+               startActivity(intent);
            }
          }
          );
