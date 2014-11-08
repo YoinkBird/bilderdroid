@@ -28,6 +28,11 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
     }
 
     public void surfaceCreated(SurfaceHolder holder) {
+    	/*
+    	// NOTE: make sure the manifest has been updated with
+    	// <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    	// <uses-permission android:name="android.permission.CAMERA" />
+    	*/
         // The Surface has been created, now tell the camera where to draw the preview.
         try {
             mCamera.setPreviewDisplay(holder);
