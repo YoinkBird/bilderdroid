@@ -55,7 +55,7 @@
         android:textColor="#FF0000" />
 
     <TextView
-        android:id="@+id/textView_uplaod_stream_title"
+        android:id="@+id/textView_upload_stream_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/upload_stream_title"
