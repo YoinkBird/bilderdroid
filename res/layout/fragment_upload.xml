@@ -4,15 +4,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <!-- Note: red text on button indicates incomplete feature. 
-    android:textColor="#FF0000" -->
+    <!--
+    Note: red text on button indicates incomplete feature. 
+    android:textColor="#FF0000"
+    -->
+
     <TextView
         android:id="@+id/textView_upload_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/upload_title"
-        android:textColor="#FF0000"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FF0000" />
 
     <Button
         android:id="@+id/button_upload_choose_file"
@@ -27,32 +30,32 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/upload_hint_annotation"
+        android:inputType="text"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#FF0000"
-        android:textColorHint="#FF0000"
-        android:inputType="text" />
+        android:textColorHint="#FF0000" />
 
     <Button
-        android:textColor="#FF0000"
         android:id="@+id/button_upload_use_camera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/upload_use_camera" />
+        android:text="@string/upload_use_camera"
+        android:textColor="#FF0000" />
 
-<Button
-    android:textColor="#FF0000"
-    android:id="@+id/button_upload_upload"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/upload_button_string" />
+    <Button
+        android:id="@+id/button_upload_upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/upload_button_string"
+        android:textColor="#FF0000" />
 
-<TextView
-    android:textColor="#FF0000"
-    android:textColorHint="#FF0000"
-    android:id="@+id/textView_uplaod_stream_title"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/upload_stream_title"
-    android:textAppearance="?android:attr/textAppearanceLarge" />
+    <TextView
+        android:id="@+id/textView_uplaod_stream_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/upload_stream_title"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FF0000"
+        android:textColorHint="#FF0000" />
 
 </LinearLayout>
