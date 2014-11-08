@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+   <string name="app_name">Camera1</string>
+   <string name="action_settings">Settings</string>
+   <string name="hello_world">Hello world!</string>
+   <string name="Capture">Take a Picture</string>
+   <string name="image_save">Use this Picture</string>
+
+   <string name="button_upload_picture">Upload this Picture (TODO: move to view \'upload\')</string>
+
+   <string name="streams_view_all">Streams</string>
+    
+</resources>

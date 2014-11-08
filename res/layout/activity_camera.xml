@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="fill_parent"
+   android:layout_height="fill_parent"
+   android:orientation="vertical" >
+
+    <!-- Note: red text on button indicates incomplete feature. 
+    android:textColor="#FF0000" -->
+   <LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="0dp"
+      android:layout_weight="0.30"
+      android:orientation="vertical" >
+        
+         <FrameLayout
+            android:id="@+id/camera_preview"
+            android:layout_width="fill_parent"
+            android:layout_height="199dp" />
+         <Button
+            android:id="@+id/button_camera_capture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="snapIt"
+            android:textColor="#FF0000"
+            android:text="@string/Capture" />
+
+         <Button
+            android:id="@+id/button_camera_save_picture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick=""
+            android:textColor="#FF0000"
+            android:text="@string/image_save" />
+
+         <Button
+            android:id="@+id/button_upload_picture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick=""
+            android:textColor="#FF0000"
+            android:text="@string/button_upload_picture" />
+
+         <Button
+            android:id="@+id/button_streams_view_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick=""
+            android:textColor="#FF0000"
+            android:text="@string/streams_view_all" />
+
+   </LinearLayout>
+</LinearLayout>
