@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,10 +41,10 @@ public class UploadActivity extends Activity {
 
 
 	private void setupButtonListeners(){
-		// Add a listener to the 'Use this Picture' button
-		Button uploadFileButton = (Button) findViewById(R.id.button_upload_choose_file);
-		if(uploadFileButton != null){
-			uploadFileButton.setOnClickListener(
+		// Add a listener to the 'Choose from Library' button
+		Button choosePictureButton = (Button) findViewById(R.id.button_upload_choose_file);
+		if(choosePictureButton != null){
+			choosePictureButton.setOnClickListener(
 					new View.OnClickListener() {
 						@Override
 						public void onClick(View v) {
@@ -51,7 +52,19 @@ public class UploadActivity extends Activity {
 					}
 					);
 		}
-		//TODO: move this to the correct view
+		// Add a listener to the 'Use Camera' button
+		Button useCameraButton = (Button) findViewById(R.id.button_upload_use_camera);
+		if(useCameraButton != null){
+			useCameraButton.setOnClickListener(
+					new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							Intent intent = new Intent(v.getContext(), CameraActivity.class);
+							startActivity(intent);
+						}
+					}
+					);
+		}
 		// Add a listener to the 'Upload Picture' button
 		Button uploadPictureButton = (Button) findViewById(R.id.button_upload_upload);
 		uploadPictureButton.setOnClickListener(
