@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="title_activity_upload">Upload</string>
     <string name="upload_title">Upload</string>
     <string name="upload_choose_file">Chose from your library</string>
     <string name="upload_use_camera">Use Camera</string>
