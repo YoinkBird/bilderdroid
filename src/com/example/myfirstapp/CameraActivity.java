@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
@@ -108,6 +109,20 @@ public class CameraActivity extends Activity {
            }
          }
          );
+     // Add a listener to the 'View Streams' button
+     Button viewAllStreamsButton = (Button) findViewById(R.id.button_upload_view_all_streams);
+     if(viewAllStreamsButton != null){
+       viewAllStreamsButton.setOnClickListener(
+           new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+               //TODO
+               Intent intent = new Intent(v.getContext(), ViewAllStreamsActivity.class);
+               startActivity(intent);
+             }
+           }
+           );
+     }
    }
    
    public void storeImage(){

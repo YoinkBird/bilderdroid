@@ -8,6 +8,6 @@
 
    <string name="button_upload_picture">Upload this Picture (TODO: move to view \'upload\')</string>
 
-   <string name="streams_view_all">Streams</string>
+   <string name="streams_view_all">View Streams</string>
     
 </resources>
