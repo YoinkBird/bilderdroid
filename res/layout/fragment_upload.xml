@@ -29,6 +29,13 @@
         android:text="@string/upload_choose_file"
         android:textColor="#FF0000" />
 
+    <Button
+        android:id="@+id/button_upload_use_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/upload_use_camera"
+        android:textColor="#FF0000" />
+
     <EditText
         android:id="@+id/editText_upload_stream_annotation"
         android:layout_width="match_parent"
@@ -39,13 +46,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#FF0000"
         android:textColorHint="#FF0000" />
-
-    <Button
-        android:id="@+id/button_upload_use_camera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/upload_use_camera"
-        android:textColor="#FF0000" />
 
     <Button
         android:id="@+id/button_upload_upload"
