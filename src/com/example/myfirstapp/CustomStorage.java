@@ -1,12 +1,16 @@
 package com.example.myfirstapp;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
+import android.widget.Toast;
 
 public class CustomStorage {
 
@@ -62,5 +66,30 @@ public class CustomStorage {
 
 	    return mediaFile;
 	}
+   public void storeImage(Bitmap bitmap){
+     CustomStorage storeFileObj = new CustomStorage();
+     File imgFile = storeFileObj.getOutputMediaFile(1);
+     // http://stackoverflow.com/a/673014
+     FileOutputStream imgOutStream = null;
+     try {
+       imgOutStream = new FileOutputStream(imgFile);
+       bitmap.compress(Bitmap.CompressFormat.JPEG,90, imgOutStream);
+       //Log.d("MyCameraApp", "imgOutStream: " + imgOutStream.toString());
+       imgOutStream.flush();
+     } catch (IOException e) {
+       // TODO Auto-generated catch block
+       e.printStackTrace();
+     } finally{
+       try {
+         if(imgOutStream != null){
+           imgOutStream.close();
+         }
+       } catch (IOException e){
+         e.printStackTrace();
+       }
+     }
+	    Log.d("CustomStorage - storeImage", "file name: " + imgFile.getPath());
+//     Toast.makeText(getApplicationContext(), imgFile.getPath(), Toast.LENGTH_LONG).show();
+   }
 
 }
