@@ -7,28 +7,25 @@ import java.io.IOException;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-//source: http://www.tutorialspoint.com/android/android_camera.htm
 /*
-//TODO: tutorials at
-http://www.airpair.com/android/android-camera-development
-http://www.airpair.com/android/android-camera-surface-view-fragment
-
-http://www.androidhive.info/2013/09/android-working-with-camera-api/
-
-http://developer.android.com/guide/topics/media/camera.html#custom-camera
+Gallery Tutorial from: http://viralpatel.net/blogs/pick-image-from-galary-android-app/
  */
 public class UploadActivity extends Activity {
 
 	private Bitmap bitmap;
-
+	private static int RESULT_LOAD_IMAGE = 1; // for gallery intent
 
 	// http://developer.android.com/guide/topics/media/camera.html#preview-layout
 	//   last code sample before 'Capturing Pictures'
@@ -38,7 +35,30 @@ public class UploadActivity extends Activity {
 		setContentView(R.layout.fragment_upload);
 		setupButtonListeners();
 	}
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+         
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+ 
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+ 
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            cursor.close();
+             
+            // NOTE: does not work correctly; device runs out of memory
+            ImageView imageView = (ImageView) findViewById(R.id.imageView_upload_img_preview);
+            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+         
+        }
+     
+     
+    }
 
 	private void setupButtonListeners(){
 		// Add a listener to the 'Choose from Library' button
@@ -48,6 +68,10 @@ public class UploadActivity extends Activity {
 					new View.OnClickListener() {
 						@Override
 						public void onClick(View v) {
+							Intent intent = new Intent(
+									Intent.ACTION_PICK,
+									android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+							startActivityForResult(intent, RESULT_LOAD_IMAGE);
 						}
 					}
 					);

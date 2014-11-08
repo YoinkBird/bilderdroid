@@ -17,6 +17,11 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#FF0000" />
 
+    <ImageView
+        android:id="@+id/imageView_upload_img_preview"
+        android:layout_width="144dp"
+        android:layout_height="159dp" />
+
     <Button
         android:id="@+id/button_upload_choose_file"
         android:layout_width="wrap_content"
