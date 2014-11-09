@@ -49,4 +49,13 @@
         android:layout_below="@+id/button_viewnearbystreams_more_pictures"
         android:text="@string/global_view_streams"
         android:textColor="#FF0000" />
+
+    <TextView
+        android:textColorHint="#FF0000"
+        android:id="@+id/textView_viewnearbystreams_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_view_all_streams"
+        android:text="@string/viewnearbystreams_title_text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 </RelativeLayout>
