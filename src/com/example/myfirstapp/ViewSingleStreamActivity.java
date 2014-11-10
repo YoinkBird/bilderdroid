@@ -1,9 +1,5 @@
 package com.example.myfirstapp;
 
-import com.littlefluffytoys.littlefluffylocationlibrary.LocationInfo;
-import com.littlefluffytoys.littlefluffylocationlibrary.LocationLibrary;
-import com.littlefluffytoys.littlefluffylocationlibrary.LocationLibraryConstants;
-
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
@@ -12,20 +8,27 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.littlefluffytoys.littlefluffylocationlibrary.LocationInfo;
+import com.littlefluffytoys.littlefluffylocationlibrary.LocationLibrary;
+import com.littlefluffytoys.littlefluffylocationlibrary.LocationLibraryConstants;
+
 public class ViewSingleStreamActivity extends Activity {
-    @Override
+    private LocationInfo mLocationInfo;
+
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
 
 
-        setupButtonListeners("single");
+        setupButtonListeners("nearby");
     }
     private void setupButtonListeners(String streamType){
     	((Button) findViewById(R.id.location_refresh)).setOnClickListener(new OnClickListener() {
@@ -39,6 +42,33 @@ public class ViewSingleStreamActivity extends Activity {
     			Toast.makeText(getApplicationContext(), "Forcing a location update", Toast.LENGTH_SHORT).show();
     		}
     	});
+        ((Button) findViewById(R.id.location_getlocation)).setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+//                LocationLibrary.getLocationUpdate(LocationTestActivity.this);
+            	LocationInfo latestInfo = new LocationInfo(getBaseContext());
+                Toast.makeText(getApplicationContext(), "Getting a location update", Toast.LENGTH_SHORT).show();
+                String[] geoViewParams = getGpsCoordPair();
+                String urlParams = null;
+                if(geoViewParams != null){
+                	urlParams += "&lat=" + geoViewParams[0] + "&long=" + geoViewParams[1];
+//                	urlParams = urlEncodeTryCatch(urlParams);
+                }
+                Toast.makeText(getApplicationContext(), "Getting a location update" + urlParams, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    private String[] getGpsCoordPair () {
+    	
+//    private String[] getGpsCoordPair(final LocationInfo locationInfo) {
+    	Log.i(this.getClass().getSimpleName(), "mLocationInfo retrieve");
+//    	mLocationInfo.refresh(getApplicationContext());
+    	String [] gpsCoordPair = new String[2];
+    	if(mLocationInfo == null){
+    		mLocationInfo = new LocationInfo(getBaseContext());
+    	}
+    	gpsCoordPair[0] = Float.toString(mLocationInfo.lastLong);
+    	gpsCoordPair[1] = (Float.toString(mLocationInfo.lastLat));
+    	return gpsCoordPair;
     }
     
     @Override

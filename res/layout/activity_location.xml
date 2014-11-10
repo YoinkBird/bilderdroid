@@ -59,5 +59,8 @@
     <Button android:id="@+id/location_forcelocation"
       android:layout_width="0dp" android:layout_weight="1" android:layout_margin="5dp"
       android:layout_height="wrap_content" android:text="Force location" />
+    <Button android:id="@+id/location_getlocation"
+      android:layout_width="0dp" android:layout_weight="1" android:layout_margin="5dp"
+      android:layout_height="wrap_content" android:text="Get location" />
   </LinearLayout>
 </LinearLayout>
