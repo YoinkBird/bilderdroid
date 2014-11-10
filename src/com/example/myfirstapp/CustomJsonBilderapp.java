@@ -11,6 +11,7 @@ import android.util.Log;
 
 public class CustomJsonBilderapp {
 
+	//TODO: import context, just in case
 	public CustomJsonBilderapp() {
 		// TODO Auto-generated constructor stub
 	}
@@ -74,5 +75,79 @@ public class CustomJsonBilderapp {
 		Log.i(this.getClass().getSimpleName(), "thumbUrlsArrayList: " + thumbUrlsArrayList.toString());
 		return  thumbUrlsArrayList.toArray(array);
 //		return  (String[]) thumbUrlsArrayList.toArray();
+	}
+
+	// TODO: call this from ViewAllStreamsActivity and remove the definition from there
+	public String[] loadImagesByStreamType(String streamType){
+		return this.loadImagesByStreamType(streamType, null);
+	}
+	public String[] loadImagesByStreamType(String streamType, String jsonRequestURL){
+		Log.i(this.getClass().getSimpleName(),  "in method: loadImagesByStreamType");
+		String[] thumbUrlStrArray = null;
+		//TODO: create simple URL to retrieve all images for a stream, all covers for all streams, etc
+		if(streamType.equals("all")){
+			//json format: [{"streamid":"<streamid>","coverurl":"http://<url>"},]
+			jsonRequestURL = "http://fizzenglorp.appspot.com/viewallstreams?redirect=0";
+			Log.i(this.getClass().getSimpleName(),  "jsonRequestURL for " + streamType + ": " + jsonRequestURL.toString());
+			// Get the JSON Array or Object
+			CustomJson customJsonObj = new CustomJson();
+			JSONArray jsonImgArray = customJsonObj.getJsonArray(jsonRequestURL);
+			// Get data from the JSON Array or Object
+			CustomJsonBilderapp customJsonBilderappObj = new CustomJsonBilderapp();
+			thumbUrlStrArray = customJsonBilderappObj.parseJsonFromViewAllStreams(jsonImgArray);
+		}
+		if(streamType.equals("search")){
+			//TODO: make json format: [{"streamid":"<streamid>","coverurl":"http://<url>"},]
+			//json format: [{"id":"<streamid>", -NO:- "coverurl":"http://<url>"},]
+//			jsonRequestURL = "http://fizzenglorp.appspot.com/viewallstreams?redirect=0";
+			Log.i(this.getClass().getSimpleName(),  "jsonRequestURL for " + streamType + ": " + jsonRequestURL.toString());
+			// Get the JSON Array or Object
+			CustomJson customJsonObj = new CustomJson();
+			JSONArray jsonImgArray = customJsonObj.getJsonArray(jsonRequestURL);
+			// Get data from the JSON Array or Object
+//			CustomJsonBilderapp customJsonBilderappObj = new CustomJsonBilderapp();
+			thumbUrlStrArray = this.parseJsonFromViewAllStreams(jsonImgArray);
+		}
+		// caveat: don't call this without an argument
+		if(streamType.equals("single")){
+			String searchTerm = null;
+			//caveat: if none specified this is not going to be fun
+			//TODO:			searchTerm = getStreamId();
+			//TODOne: this returns 'img src=...' for the javascript map; needs to be fixed!
+			jsonRequestURL = "http://fizzenglorp.appspot.com/viewsinglestream?geoview=0&stream_id=" + searchTerm;
+			Log.i(this.getClass().getSimpleName(),  "jsonRequestURL for " + streamType + ": " + jsonRequestURL.toString());
+			// Get the JSON Array or Object
+			CustomJson customJsonObj = new CustomJson();
+			JSONObject jsonImgObject = customJsonObj.getJsonObject(jsonRequestURL);
+			// Get data from the JSON Array or Object
+			CustomJsonBilderapp customJsonBilderappObj = new CustomJsonBilderapp();
+			thumbUrlStrArray = customJsonBilderappObj.parseJsonFromViewSingleStream(jsonImgObject);
+		}
+		if(streamType.equals("nearby")){
+			//TODO: determine the json format: [{"streamid":"<streamid>","coverurl":"http://<url>"},]
+			//TODO: implement this api; using the 'viewall' for now as a placeholder
+			//IDEA: add a 'nearby=<gpscoord>' to the map-view API 
+			jsonRequestURL = "http://fizzenglorp.appspot.com/viewallstreams?redirect=0";
+			Log.i(this.getClass().getSimpleName(),  "jsonRequestURL for " + streamType + ": " + jsonRequestURL.toString());
+			// Get the JSON Array or Object
+			CustomJson customJsonObj = new CustomJson();
+			JSONArray jsonImgArray = customJsonObj.getJsonArray(jsonRequestURL);
+			// Get data from the JSON Array or Object
+			CustomJsonBilderapp customJsonBilderappObj = new CustomJsonBilderapp();
+			thumbUrlStrArray = customJsonBilderappObj.parseJsonFromViewAllStreams(jsonImgArray);
+		}
+		if(streamType.equals("subscribed")){
+			//TODO: determine the json format: [{"streamid":"<streamid>","coverurl":"http://<url>"},]
+			//TODO: implement this api; using the 'viewall' for now as a placeholder
+			jsonRequestURL = "http://fizzenglorp.appspot.com/viewallstreams?redirect=0";
+			Log.i(this.getClass().getSimpleName(),  "jsonRequestURL for " + streamType + ": " + jsonRequestURL.toString());
+			// Get the JSON Array or Object
+			CustomJson customJsonObj = new CustomJson();
+			JSONArray jsonImgArray = customJsonObj.getJsonArray(jsonRequestURL);
+			// Get data from the JSON Array or Object
+			CustomJsonBilderapp customJsonBilderappObj = new CustomJsonBilderapp();
+			thumbUrlStrArray = customJsonBilderappObj.parseJsonFromViewAllStreams(jsonImgArray);
+		}
+		return thumbUrlStrArray;
 	}
 }
