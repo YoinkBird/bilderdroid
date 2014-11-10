@@ -68,6 +68,35 @@ public class ViewSingleStreamActivity extends Activity {
             	Toast.makeText(getApplicationContext(), "Getting a location update:\n" + getGpsCoordParamString(), Toast.LENGTH_SHORT).show();
             }
         });
+        setupButtonListeners_viewNearbyStreams();
+    }
+    // set up buttons for the 'View Nearby Streams' layout
+    private void setupButtonListeners_viewNearbyStreams(){
+    	Button morePicturesButton = (Button) findViewById(R.id.button_viewnearbystreams_more_pictures);
+    	if(morePicturesButton != null){
+    		morePicturesButton.setOnClickListener(
+    				new View.OnClickListener() {
+    					@Override
+    					public void onClick(View v) {
+    						//TODO
+    						startViewAllStreamsActivity(v, "nearby");
+    					}
+    				}
+    				);
+    	}
+    	// Add a listener to the 'view streams' button
+    	Button viewAllStreamsButton = (Button) findViewById(R.id.button_view_all_streams);
+    	if(viewAllStreamsButton != null){
+    		viewAllStreamsButton.setOnClickListener(
+    				new View.OnClickListener() {
+    					@Override
+    					public void onClick(View v) {
+    						//TODO
+    						startViewAllStreamsActivity(v, "all");
+    					}
+    				}
+    				);
+    	}
     }
     public void configureGridView(GridView gridview){
 		gridview.setOnItemClickListener(new OnItemClickListener() {
@@ -109,6 +138,16 @@ public class ViewSingleStreamActivity extends Activity {
 		
 	}
 	// copied and adapted from ViewAllStreamsActivity
+	// load stream activity
+	/** Called when the user clicks one of the buttons for viewing streams*/
+	public void startViewAllStreamsActivity(View view, String streamType){
+		Intent intent = new Intent(this, ViewAllStreamsActivity.class);
+		if(streamType.equals("nearby")){
+			intent = new Intent(this, ViewSingleStreamActivity.class);
+		}
+		intent.putExtra(ViewAllStreamsActivity.DISPLAY_STREAM_SELECTOR, streamType);
+		startActivity(intent);
+	}
 	/** Called when the user clicks one of the grid elements */
 	public void startViewAllStreamsActivity(View view, String streamType, String streamName){
 		Intent intent = new Intent(this, ViewAllStreamsActivity.class);
