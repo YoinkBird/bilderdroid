@@ -22,6 +22,7 @@ public class UploadActivity extends Activity {
 
 	private Bitmap bitmap;
 	private static int RESULT_LOAD_IMAGE = 1; // for gallery intent
+	private String globalFilePathString = null;
 
 	// http://developer.android.com/guide/topics/media/camera.html#preview-layout
 	//   last code sample before 'Capturing Pictures'
@@ -45,14 +46,18 @@ public class UploadActivity extends Activity {
  
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String picturePath = cursor.getString(columnIndex);
+            globalFilePathString = picturePath;
             cursor.close();
              
             // Display filepath as confirmation
             TextView fileUploadTextView = (TextView) findViewById(R.id.textView_upload_filename);
-            fileUploadTextView.setText(picturePath);
+            fileUploadTextView.setText("File:" + picturePath);
             // NOTE: does not work correctly; device runs out of memory
             ImageView imageView = (ImageView) findViewById(R.id.imageView_upload_img_preview);
             imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+            
+            // TODO: enable 'upload' button (it's not "disabled" by default yet)
+            
          
         }
      
@@ -95,7 +100,7 @@ public class UploadActivity extends Activity {
 					@Override
 					public void onClick(View v) {
 						// Upload hard-coded file-name
-						CustomUpload.postImage();
+						CustomUpload.postImage(globalFilePathString);
 					}
 				}
 				);

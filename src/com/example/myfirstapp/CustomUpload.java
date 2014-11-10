@@ -17,10 +17,6 @@ public class CustomUpload {
 	public CustomUpload() {
 		// TODO Auto-generated constructor stub
 	}
-	// For texting, backwards compat only!
-	public static void postImage(){
-	    postImage(Environment.getExternalStorageDirectory().getPath() + "/Pictures/MyCameraApp/test.jpg");
-	}
 	public static void postImage(String filePath){
 		// http://loopj.com/android-async-http/ 
 		// search for "Uploading Files with RequestParams"
