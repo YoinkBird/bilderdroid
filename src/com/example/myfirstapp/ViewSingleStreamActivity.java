@@ -60,8 +60,15 @@ public class ViewSingleStreamActivity extends Activity {
     public void onPause() {
         super.onPause();
         
+    	Log.i(this.getClass().getSimpleName(), "onPause");
         unregisterReceiver(lftBroadcastReceiver);
    }
+
+    @Override
+    public void onStop(){
+    	Log.i(this.getClass().getSimpleName(), "onStop");
+    	super.onStop();
+    }
     
     private void refreshDisplay() {
         refreshDisplay(new LocationInfo(this));
