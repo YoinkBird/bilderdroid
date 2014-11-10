@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -44,6 +46,24 @@ public class ViewSingleStreamActivity extends Activity {
 		setGridViewByStreamType(streamType, tmpImgAdapter);
 		// do something wacky
 		gridview.setAdapter(tmpImgAdapter);
+		gridview.setOnItemClickListener(new OnItemClickListener() {
+			// http://developer.android.com/reference/android/widget/AdapterView.OnItemClickListener.html
+			// parent:   adapterview where click happened
+			// view:     view that was clicked
+			// position: position of the view in the adapter
+			// id:       row id of clicked item
+			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+				Toast.makeText(getApplicationContext(), "" + position, Toast.LENGTH_SHORT).show();
+
+				Log.i(this.getClass().getSimpleName(), "adapterview: " + parent.toString());
+				Log.i(this.getClass().getSimpleName(), "adapterview: " + parent.getAdapter().getItemId(position));
+				Log.i(this.getClass().getSimpleName(), "adapterview: " + ((ImageAdapter) parent.getAdapter()).getStreamId(position));
+				String testStreamId = ((ImageAdapter) parent.getAdapter()).getStreamId(position);
+				//TODO: this call may need to be flexible for nearby, all, etc
+				Log.i(this.getClass().getSimpleName(), "testStreamId: " + testStreamId.toString());
+				startViewAllStreamsActivity(v, "single", testStreamId);
+			}
+		});
 
 		// set up button listeners. "nearby" has no application in this activity
         setupButtonListeners("nearby");
@@ -65,7 +85,7 @@ public class ViewSingleStreamActivity extends Activity {
             }
         });
     }
-    public void setUpGridView(){
+    public void configureGridView(){
     	
     }
 	public void setGridViewByStreamType(String streamType, ImageAdapter gridViewImgAdapter){
@@ -84,6 +104,14 @@ public class ViewSingleStreamActivity extends Activity {
 
 		}
 		
+	}
+	// copied and adapted from ViewAllStreamsActivity
+	/** Called when the user clicks one of the grid elements */
+	public void startViewAllStreamsActivity(View view, String streamType, String streamName){
+		Intent intent = new Intent(this, ViewAllStreamsActivity.class);
+		intent.putExtra(ViewAllStreamsActivity.DISPLAY_STREAM_SELECTOR, streamType);
+		intent.putExtra(ViewAllStreamsActivity.STREAMID_SELECTOR, streamName);
+		startActivity(intent);
 	}
 
     public void updateGpsTextView(){
