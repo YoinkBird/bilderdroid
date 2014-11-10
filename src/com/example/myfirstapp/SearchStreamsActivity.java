@@ -89,10 +89,18 @@ public class SearchStreamsActivity extends ActionBarActivity {
 				String testStreamId = ((ImageAdapter) parent.getAdapter()).getStreamId(position);
 				//TODO: this call may need to be flexible for nearby, all, etc
 				Log.i(this.getClass().getSimpleName(), "testStreamId: " + testStreamId.toString());
-//				startViewAllStreamsActivity(v, "single", testStreamId);
+				startViewAllStreamsActivity(v, "single", testStreamId);
 			}
 		});
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+	}
+	// copied and adapted from ViewAllStreamsActivity
+	/** Called when the user clicks one of the grid elements */
+	public void startViewAllStreamsActivity(View view, String streamType, String streamName){
+		Intent intent = new Intent(this, ViewAllStreamsActivity.class);
+		intent.putExtra(ViewAllStreamsActivity.DISPLAY_STREAM_SELECTOR, streamType);
+		intent.putExtra(ViewAllStreamsActivity.STREAMID_SELECTOR, streamName);
+		startActivity(intent);
 	}
 	/** Called when the user clicks the Search button */
 	public void searchQuery(View view){
