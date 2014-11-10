@@ -63,6 +63,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.myfirstapp.MainActivity" />
         </activity>
+        <activity
+            android:name=".ViewSingleStreamActivity"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.myfirstapp.MainActivity" />
+        </activity>
         <!--  This is for the LocationActivity, which displays the location-related services  -->
         <activity android:name=".LocationTestActivity"
                   android:launchMode="singleTop"

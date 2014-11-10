@@ -282,6 +282,9 @@ public class ViewAllStreamsActivity extends Activity {
 	/** Called when the user clicks one of the buttons for viewing streams*/
 	public void startViewAllStreamsActivity(View view, String streamType){
 		Intent intent = new Intent(this, ViewAllStreamsActivity.class);
+		if(streamType.equals("nearby")){
+			intent = new Intent(this, ViewSingleStreamActivity.class);
+		}
 		intent.putExtra(DISPLAY_STREAM_SELECTOR, streamType);
 		startActivity(intent);
 	}
