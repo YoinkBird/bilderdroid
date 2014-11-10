@@ -14,7 +14,7 @@
 
     <!--  Search -->
     <string name="search_term_hint">Search Streams</string>
-    <string name="search_results_summary_string">TODO: $num results for $query\nClick on an image to view stream</string>
+    <string name="search_results_summary_string">Click on an image to view stream</string>
     <string name="search_more_results_button">More Search Results</string>
     <!--  /Search -->
     <string name="global_view_streams">View Streams</string>

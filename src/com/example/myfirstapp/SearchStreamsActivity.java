@@ -58,6 +58,8 @@ public class SearchStreamsActivity extends ActionBarActivity {
 				.add(R.id.container, new PlaceholderFragment()).commit();
 			}
 		}
+		// update results box
+		setSearchResultsSummaryMessage(mTestThumbUrls.length , searchTerm);
 		
 		// set up gridview
 		GridView gridview = (GridView) findViewById(R.id.gridview_search);
@@ -93,6 +95,27 @@ public class SearchStreamsActivity extends ActionBarActivity {
 			}
 		});
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+	}
+	
+	/*
+    // $num results for $query\nClick on an image to view stream
+    // TODO: get this from R.id.search_results_summary_string
+	 * 
+	 */
+	private String setSearchResultsSummaryMessage(int numResults, String searchTerm){
+		// update results box
+		// $num results for $query\nClick on an image to view stream
+		String pluralSuffix = "s";
+		if(numResults >= -1 && numResults <=1 ){
+			pluralSuffix = "";
+		}
+		String searchSummaryString = String.valueOf(numResults) + " result" + pluralSuffix + " for query \"" + searchTerm + "\"";
+		// TODO: get this from R.id.search_results_summary_string
+		searchSummaryString += "\nClick on an image to view stream";
+		TextView searchSummaryTextView = (TextView) findViewById(R.id.search_results_summary);
+		searchSummaryTextView.setText(searchSummaryString);
+
+		return searchSummaryString;
 	}
 	// copied and adapted from ViewAllStreamsActivity
 	/** Called when the user clicks one of the grid elements */
