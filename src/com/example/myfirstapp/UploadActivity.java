@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 /*
 Gallery Tutorial from: http://viralpatel.net/blogs/pick-image-from-galary-android-app/
@@ -46,6 +47,9 @@ public class UploadActivity extends Activity {
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
              
+            // Display filepath as confirmation
+            TextView fileUploadTextView = (TextView) findViewById(R.id.textView_upload_filename);
+            fileUploadTextView.setText(picturePath);
             // NOTE: does not work correctly; device runs out of memory
             ImageView imageView = (ImageView) findViewById(R.id.imageView_upload_img_preview);
             imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
