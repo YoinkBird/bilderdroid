@@ -2,6 +2,7 @@ package com.example.myfirstapp;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 
 import org.apache.http.Header;
 
@@ -62,9 +63,17 @@ public class CustomUpload {
 			}
 
 			@Override
-			public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
-				// TODO Auto-generated method stub
-        	   Log.d(this.getClass().getSimpleName(), "upload success! ");
+			public void onSuccess(int arg0, Header[] arg1, byte[] responseBody) {
+        	    Log.d(this.getClass().getSimpleName(), "upload success! ");
+				String content = null;
+				try {
+					content = new String(responseBody, "UTF-8"); // from http://stackoverflow.com/q/26787928
+					Log.d(this.getClass().getSimpleName(), "response:" + content);
+//					sendDataToUrl(content);
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 			}
 	    });
