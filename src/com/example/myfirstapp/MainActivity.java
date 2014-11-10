@@ -113,5 +113,18 @@ public class MainActivity extends Activity {
            }
          }
          );
-   }
+		// Add a listener to the 'Launch Location Activity' button
+		Button launchLocationActivityBtton = (Button) findViewById(R.id.button_launch_TEMP_activity);
+		if(launchLocationActivityBtton != null){
+			launchLocationActivityBtton.setOnClickListener(
+					new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							Intent intent = new Intent(v.getContext(), LocationTestActivity.class);
+							startActivity(intent);
+						}
+					}
+					);
+		}
+	}
 }

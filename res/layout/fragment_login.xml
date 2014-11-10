@@ -53,4 +53,11 @@
         android:textColor="#FF0000"
         android:text="@string/global_view_streams" />
 
+    <Button
+        android:id="@+id/button_launch_TEMP_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="Launch Location Activity" />
+
 </LinearLayout>
