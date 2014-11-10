@@ -107,6 +107,10 @@ public class CustomStorage {
        } catch (IOException e){
          e.printStackTrace();
        }
+       // risky - free up memory to avoid some of the erorrs I keep getting
+//       bitmap.recycle();
+       // "remove data" to free up memory to avoid some of the erorrs I keep getting
+       bitmap = null;
      }
 	    Log.d("CustomStorage - storeImage", "file name: " + imgFile.getPath());
 //     Toast.makeText(getApplicationContext(), imgFile.getPath(), Toast.LENGTH_LONG).show();
