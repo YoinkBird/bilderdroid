@@ -22,11 +22,13 @@ public class SearchStreamsActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+		// TODO: move after the layout setup
 		// Get the message from the intent
 		Intent intent = getIntent();
 		String searchTerm = intent.getStringExtra(MainActivity.SEARCH_QUERY);
 		String jsonRequestURL = "http://fizzenglorp.appspot.com/genericquery?redirect=0&term=" + searchTerm;
 		
+		// TODO: move after the layout setup
 		CustomJson customJsonObj = new CustomJson();
 		String jsonReturnString = customJsonObj.getJsonString(jsonRequestURL);
 		CustomJsonBilderapp customJsonBilderappObj = new CustomJsonBilderapp();
@@ -36,9 +38,17 @@ public class SearchStreamsActivity extends ActionBarActivity {
 		if(true){
 			// set up layout
 			setContentView(R.layout.fragment_search_streams);
+			/*
+			 * no longer needed, delete once everything is working for sure, eh
+            <TextView
+                android:id="@+id/display_json"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/display_json" />
 			// get text view for json
 			TextView jsonTextView = (TextView) findViewById(R.id.display_json);
 			jsonTextView.setText(jsonReturnString);
+			*/
 			//Log.i(MainActivity.class.getName(), "jsonTextView: " + jsonTextView.toString());
 			//Log.i(MainActivity.class.getName(), "json Text: " + jsonReturnString);
 		}
