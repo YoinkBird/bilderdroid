@@ -150,5 +150,18 @@ public class MainActivity extends Activity {
 					}
 					);
 		}
-	}
+		// Add a listener to the 'View Nearby Streams' button
+		Button launchNearbyStreamsActivityButton = (Button) findViewById(R.id.button_login_quicklaunch_nearby);
+		if(launchNearbyStreamsActivityButton != null){
+			launchNearbyStreamsActivityButton.setOnClickListener(
+					new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							Intent intent = new Intent(v.getContext(), ViewSingleStreamActivity.class);
+							startActivity(intent);
+						}
+					}
+					);
+		}
+   }
 }

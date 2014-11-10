@@ -77,4 +77,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Launch Upload Activity" />
+    <Button
+        android:id="@+id/button_login_quicklaunch_nearby"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Launch Nearby Streams Activity" />
 </LinearLayout>
