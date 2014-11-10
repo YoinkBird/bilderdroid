@@ -374,13 +374,12 @@ public class ViewAllStreamsActivity extends Activity {
            new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-               //TODO
-            	 String streamType = STREAMID_SELECTOR;
-//            	 Intent intent = new Intent(this, UploadActivity.class);
+            	 String streamType = getStreamId();
             	 Intent intent = new Intent(v.getContext(), UploadActivity.class);
-//            	 intent.putExtra(DISPLAY_STREAM_SELECTOR, streamType);
+            	 if(streamType != null){
+            		 intent.putExtra(STREAMID_SELECTOR, streamType);
+            	 }
             	 startActivity(intent);
-//               startUploadImageActivity(v, "single");
              }
            }
            );

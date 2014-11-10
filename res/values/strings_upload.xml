@@ -7,5 +7,5 @@
     <string name="upload_use_camera">Use Camera</string>
     <string name="upload_hint_annotation">Add a message and/or tags</string>
     <string name="upload_button_string">Upload</string>
-    <string name="upload_stream_title">Stream: TODO</string>
+    <string name="upload_stream_title">Stream: </string>
 </resources>

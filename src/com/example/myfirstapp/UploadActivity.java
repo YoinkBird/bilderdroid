@@ -30,6 +30,7 @@ public class UploadActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fragment_upload);
+		updateStreamTextView();
 		setupButtonListeners();
 	}
     @Override
@@ -110,5 +111,27 @@ public class UploadActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+	// determine whether streamId specified, if so, return it
+	//caveat: if none specified this is not going to be fun
+	private String getStreamId (){
+		String streamId = null;
+		// get intent, check if null
+		Intent intent = getIntent();
+		String streamIdSelector = intent.getStringExtra(ViewAllStreamsActivity.STREAMID_SELECTOR);
+		if(streamIdSelector != null){
+			streamId = streamIdSelector;
+		}
+		return streamId;
+	}
+	private String updateStreamTextView(){
+		return updateStreamTextView(getStreamId());
+	}
+	private String updateStreamTextView(String streamid){
+		TextView uploadTextView_title = (TextView) findViewById(R.id.textView_upload_stream_title);
+		String titleString = (String) uploadTextView_title.getText();
+		titleString += streamid;
+		uploadTextView_title.setText(titleString);
+		return titleString;
 	}
 }

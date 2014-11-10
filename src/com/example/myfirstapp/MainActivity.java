@@ -141,6 +141,10 @@ public class MainActivity extends Activity {
 						@Override
 						public void onClick(View v) {
 							Intent intent = new Intent(v.getContext(), UploadActivity.class);
+							String streamType = "android_upload_test";
+							if(streamType != null){
+								intent.putExtra(ViewAllStreamsActivity.STREAMID_SELECTOR, streamType);
+							}
 							startActivity(intent);
 						}
 					}
