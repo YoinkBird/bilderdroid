@@ -1,22 +1,7 @@
 package com.example.myfirstapp;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -24,8 +9,12 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SearchStreamsActivity extends ActionBarActivity {
 
@@ -60,6 +49,39 @@ public class SearchStreamsActivity extends ActionBarActivity {
 			}
 		}
 		
+		// set up gridview
+		GridView gridview = (GridView) findViewById(R.id.gridview_search);
+		// do something wacky and ultimately add the images to the gridview
+		ImageAdapter tmpImgAdapter = new ImageAdapter(this);
+		tmpImgAdapter.setThumbUrls(mTestThumbUrls);
+		// do something wacky
+		gridview.setAdapter(tmpImgAdapter);
+
+		// click this to do that
+		/* IDEA:
+		 * create arraylist of streamnames, then use 'position' to index the streamname
+		 * instead of 'Toast' call 'view single stream' with the intent 'streamname'
+		 * 1. call view single stream (after toast displays)
+		 * 2. pass in stream id
+		*/
+		gridview.setOnItemClickListener(new OnItemClickListener() {
+			// http://developer.android.com/reference/android/widget/AdapterView.OnItemClickListener.html
+			// parent:   adapterview where click happened
+			// view:     view that was clicked
+			// position: position of the view in the adapter
+			// id:       row id of clicked item
+			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+				Toast.makeText(getApplicationContext(), "" + position, Toast.LENGTH_SHORT).show();
+
+				Log.i(this.getClass().getSimpleName(), "adapterview: " + parent.toString());
+				Log.i(this.getClass().getSimpleName(), "adapterview: " + parent.getAdapter().getItemId(position));
+				Log.i(this.getClass().getSimpleName(), "adapterview: " + ((ImageAdapter) parent.getAdapter()).getStreamId(position));
+				String testStreamId = ((ImageAdapter) parent.getAdapter()).getStreamId(position);
+				//TODO: this call may need to be flexible for nearby, all, etc
+				Log.i(this.getClass().getSimpleName(), "testStreamId: " + testStreamId.toString());
+//				startViewAllStreamsActivity(v, "single", testStreamId);
+			}
+		});
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 	/** Called when the user clicks the Search button */

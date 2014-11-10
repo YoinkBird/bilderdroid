@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/search_term_hint" />
     <Button
+        android:id="@+id/button_search_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="searchQuery"
@@ -24,6 +25,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/search_results_summary_string" />
+    <GridView
+        android:textColorHint="#FF0000"
+        android:id="@+id/gridview_search"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:columnWidth="90dp"
+        android:gravity="center"
+        android:horizontalSpacing="10dp"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dp" />
     <TextView
         android:id="@+id/display_json"
         android:layout_width="wrap_content"
