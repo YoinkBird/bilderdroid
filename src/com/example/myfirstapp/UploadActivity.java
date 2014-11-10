@@ -1,10 +1,6 @@
 package com.example.myfirstapp;
 
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -17,7 +13,6 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 /*
 Gallery Tutorial from: http://viralpatel.net/blogs/pick-image-from-galary-android-app/
@@ -100,34 +95,6 @@ public class UploadActivity extends Activity {
 					}
 				}
 				);
-	}
-
-	public void storeImage(){
-		storeImage(this.bitmap);
-	}
-	public void storeImage(Bitmap bitmap){
-		CustomStorage storeFileObj = new CustomStorage();
-		File imgFile = storeFileObj.getOutputMediaFile(1);
-		// http://stackoverflow.com/a/673014
-		FileOutputStream imgOutStream = null;
-		try {
-			imgOutStream = new FileOutputStream(imgFile);
-			bitmap.compress(Bitmap.CompressFormat.JPEG,90, imgOutStream);
-			//Log.d("MyCameraApp", "imgOutStream: " + imgOutStream.toString());
-			imgOutStream.flush();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally{
-			try {
-				if(imgOutStream != null){
-					imgOutStream.close();
-				}
-			} catch (IOException e){
-				e.printStackTrace();
-			}
-		}
-		Toast.makeText(getApplicationContext(), imgFile.getPath(), Toast.LENGTH_LONG).show();
 	}
 
 	@Override
