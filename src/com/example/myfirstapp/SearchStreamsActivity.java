@@ -35,7 +35,7 @@ public class SearchStreamsActivity extends ActionBarActivity {
 		
 		// Get the message from the intent
 		Intent intent = getIntent();
-		String searchTerm = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+		String searchTerm = intent.getStringExtra(MainActivity.SEARCH_QUERY);
 		String jsonRequestURL = "http://fizzenglorp.appspot.com/genericquery?redirect=0&term=" + searchTerm;
 		
 		CustomJson customJsonObj = new CustomJson();
@@ -64,8 +64,7 @@ public class SearchStreamsActivity extends ActionBarActivity {
 		Intent intent = new Intent(this, SearchStreamsActivity.class);
 		EditText editText = (EditText) findViewById(R.id.search_term);
 		String message = editText.getText().toString();
-		String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
-		intent.putExtra(EXTRA_MESSAGE, message);
+		intent.putExtra(MainActivity.SEARCH_QUERY, message);
 		startActivity(intent);
 	}
 /*

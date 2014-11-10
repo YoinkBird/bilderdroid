@@ -218,7 +218,7 @@ public class ViewAllStreamsActivity extends Activity {
 		String message = "";
 		EditText editText = (EditText) findViewById(R.id.editText_search_streams);
 		message = editText.getText().toString();
-		intent.putExtra(MainActivity.EXTRA_MESSAGE, message);
+		intent.putExtra(MainActivity.SEARCH_QUERY, message);
 		startActivity(intent);
 	}
 	/** Called when the user clicks one of the buttons for viewing streams*/

@@ -14,6 +14,7 @@ import android.widget.EditText;
 
 public class MainActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+	public final static String SEARCH_QUERY  = "com.example.myfirstapp.SEARCH_QUERY";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,20 +71,13 @@ public class MainActivity extends Activity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main, container,
+			View rootView = inflater.inflate(R.layout.fragment_login, container,
 					false);
 			return rootView;
 		}
 	}
 	
-	/** Called when the user clicks the Send button */
-	public void sendSearchQuery(View view){
-		Intent intent = new Intent(this, SearchStreamsActivity.class);
-		String message = "";
-		intent.putExtra(EXTRA_MESSAGE, message);
-		startActivity(intent);
-	}
-	/** Called when the user clicks the Send button */
+	/** Called when the user clicks the 'View Streams' button */
 	public void startViewAllStreamsActivity(View view){
 		Intent intent = new Intent(this, ViewAllStreamsActivity.class);
 		String message = "android";
