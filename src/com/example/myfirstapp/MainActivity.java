@@ -139,5 +139,18 @@ public class MainActivity extends Activity {
 					}
 					);
 		}
+		// Add a listener to the 'Launch Upload Activity' button
+		Button launchUploadActivityBtton = (Button) findViewById(R.id.button_login_quicklaunch_upload);
+		if(launchUploadActivityBtton != null){
+			launchUploadActivityBtton.setOnClickListener(
+					new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							Intent intent = new Intent(v.getContext(), UploadActivity.class);
+							startActivity(intent);
+						}
+					}
+					);
+		}
 	}
 }
