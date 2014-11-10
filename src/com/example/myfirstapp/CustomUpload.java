@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 
 import org.apache.http.Header;
 
-import android.os.Environment;
+import android.content.Context;
 import android.util.Log;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -13,7 +13,12 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 public class CustomUpload {
+	Context mContextCustomUpload = null;
 
+	public CustomUpload(Context context) {
+		mContextCustomUpload = context;
+		// TODO Auto-generated constructor stub
+	}
 	public CustomUpload() {
 		// TODO Auto-generated constructor stub
 	}
@@ -35,7 +40,8 @@ public class CustomUpload {
 	    // java.net.MalformedURLException: No valid URI scheme was provided // uploadUrl = "fizzenglorp.appspot.com/blueimp_upload?streamid=android_upload_test";
 	    //TODO: move to string resource
 //	    uploadUrl = "http://fizzenglorp.appspot.com/blueimp_upload?streamid=android_upload_test";
-	    uploadUrl = "http://fizzenglorp.appspot.com/blueimp_upload";
+//	    uploadUrl = "http://fizzenglorp.appspot.com/blueimp_upload";
+	    uploadUrl = getUploadUrl();
 	    Log.d("CustomUpload", "upload attempt " + params.toString());
 	    Log.d("CustomUpload", "file name: " + imgFile.getPath());
 	    client.post(uploadUrl, params, new AsyncHttpResponseHandler() {
@@ -63,6 +69,16 @@ public class CustomUpload {
 			}
 	    });
 	}  
+	public static String getUploadUrl(){
+//		String blobstoreGenUrl = mContextCustomUpload.getString(R.string.blobstore_generation_url);
+		String blobstoreGenUrl = "http://fizzenglorp.appspot.com/getblobstoreurl";
+//		String imgUploadURL = "http://fizzenglorp.appspot.com/_ah/upload/?streamid=android_upload_test/AMmfu6Zqcqf5pqL721Qi9vd3rYQIjpDvUbxz8gs4oxs-J0V_7HWgj-TIlpy3f_nWcdVskml54g4_lPJt2L767wMwyYWeh3k64ZyEz3MME_ZoMVyYy3M9KT5OlPXP2qXONzRo4ygqKrF-BCEeaIQJwJF7rjzR8LCkAZQ4tHkKPSh0WumiSA4fSyA/ALBNUaYAAAAAVGBpHmDfB3tsCBZxynJASbmj85p948BN/";
+		CustomJson httpSendObj = new CustomJson();
+		Log.d("CustomUpload", "retrieval requested for: " + blobstoreGenUrl);
+		String imgUploadURL = httpSendObj.sendHttpRequest(blobstoreGenUrl);
+		Log.d("CustomUpload", "retrieval result: " + imgUploadURL);
+		return imgUploadURL;
+	}
 }
 
 /*
