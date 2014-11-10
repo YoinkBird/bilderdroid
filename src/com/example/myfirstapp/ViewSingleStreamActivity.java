@@ -65,6 +65,7 @@ public class ViewSingleStreamActivity extends Activity {
             	LocationInfo latestInfo = new LocationInfo(getBaseContext());
 //                Toast.makeText(getApplicationContext(), "Getting a location update", Toast.LENGTH_SHORT).show();
             	updateGpsTextView();
+            	Toast.makeText(getApplicationContext(), "Getting a location update:\n" + getGpsCoordParamString(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -118,7 +119,6 @@ public class ViewSingleStreamActivity extends Activity {
 
     public void updateGpsTextView(){
     	String urlParams = getGpsCoordParamString();
-    	Toast.makeText(getApplicationContext(), "Getting a location update:\n" + urlParams, Toast.LENGTH_SHORT).show();
     	TextView gpsCoordTxtView = (TextView) findViewById(R.id.textView_viewnearbystreams_location);
     	gpsCoordTxtView.setText("GPS: " + urlParams);
 
