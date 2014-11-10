@@ -23,6 +23,7 @@ public class UploadActivity extends Activity {
 	private Bitmap bitmap;
 	private static int RESULT_LOAD_IMAGE = 1; // for gallery intent
 	private String globalFilePathString = null;
+	private String mStreamId = null;
 
 	// http://developer.android.com/guide/topics/media/camera.html#preview-layout
 	//   last code sample before 'Capturing Pictures'
@@ -30,6 +31,7 @@ public class UploadActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fragment_upload);
+		mStreamId = getStreamId();
 		updateStreamTextView();
 		setupButtonListeners();
 	}
@@ -101,7 +103,7 @@ public class UploadActivity extends Activity {
 					@Override
 					public void onClick(View v) {
 						// Upload hard-coded file-name
-						CustomUpload.postImage(globalFilePathString);
+						CustomUpload.postImage(globalFilePathString, mStreamId);
 					}
 				}
 				);
@@ -125,6 +127,9 @@ public class UploadActivity extends Activity {
 		return streamId;
 	}
 	private String updateStreamTextView(){
+		if(mStreamId != null){
+			return updateStreamTextView(mStreamId);
+		}
 		return updateStreamTextView(getStreamId());
 	}
 	private String updateStreamTextView(String streamid){
