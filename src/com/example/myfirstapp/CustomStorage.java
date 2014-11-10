@@ -7,11 +7,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
-import android.widget.Toast;
 
 public class CustomStorage {
 //	http://stackoverflow.com/a/14681859
@@ -79,6 +80,22 @@ public class CustomStorage {
        bitmap.compress(Bitmap.CompressFormat.JPEG,90, imgOutStream);
        //Log.d("MyCameraApp", "imgOutStream: " + imgOutStream.toString());
        imgOutStream.flush();
+       // register file so it shows up in Gallery
+	   Log.d("CustomStorage - storeImage", "file object name: " + imgFile.getPath());
+	   if(false){
+		   runMediaScanner(imgFile);
+	   }
+	   else{
+		   // oh god, what have I done?
+		   // http://stackoverflow.com/a/22498023
+		   // oh well, other method not working yet.
+		   // is there an eternal punishment waiting for those who do this?
+    	   Uri uri = Uri.fromFile(imgFile);
+    	   Log.d("CustomStorage - storeImage", "file uri name: " + uri.getPath());
+    	   Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
+    	   Log.d("CustomStorage - storeImage", "file intent name: " + intent);
+    	   mContextCustomStorage.sendBroadcast(intent);
+       }
      } catch (IOException e) {
        // TODO Auto-generated catch block
        e.printStackTrace();
@@ -94,6 +111,22 @@ public class CustomStorage {
 	    Log.d("CustomStorage - storeImage", "file name: " + imgFile.getPath());
 //     Toast.makeText(getApplicationContext(), imgFile.getPath(), Toast.LENGTH_LONG).show();
 	 return imgFile.getPath();
+   }
+   
+//   public void runMediaScanner(String filePath){
+   public void runMediaScanner(File file){
+	   Log.d("CustomStorage - runMediaScanner", "file object name: " + file.getPath());
+	   MediaScannerConnection.scanFile(
+			   null,
+			   new String[] { file.toString() }, 
+			   null,
+			   new MediaScannerConnection.OnScanCompletedListener() {
+				   public void onScanCompleted(String path, Uri uri) {
+					   Log.i("ExternalStorage", "Scanned " + path + ":");
+					   Log.i("ExternalStorage", "-> uri=" + uri);
+				   }
+			   });
+	   return;
    }
 
 }
