@@ -82,10 +82,10 @@ public class CustomStorage {
        imgOutStream.flush();
        // register file so it shows up in Gallery
 	   Log.d("CustomStorage - storeImage", "file object name: " + imgFile.getPath());
-	   if(false){
+	   if(true){ // this works in phone, but doesn't show up over USB so I am using both
 		   runMediaScanner(imgFile);
 	   }
-	   else{
+	   else if(true){
 		   // oh god, what have I done?
 		   // http://stackoverflow.com/a/22498023
 		   // oh well, other method not working yet.
@@ -115,9 +115,10 @@ public class CustomStorage {
    
 //   public void runMediaScanner(String filePath){
    public void runMediaScanner(File file){
+	   // this works in phone but does not appear to show up in USB
 	   Log.d("CustomStorage - runMediaScanner", "file object name: " + file.getPath());
 	   MediaScannerConnection.scanFile(
-			   null,
+			   mContextCustomStorage,
 			   new String[] { file.toString() }, 
 			   null,
 			   new MediaScannerConnection.OnScanCompletedListener() {
