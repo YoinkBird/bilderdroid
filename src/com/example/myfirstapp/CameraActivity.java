@@ -88,7 +88,7 @@ public class CameraActivity extends Activity {
            @Override
            public void onClick(View v) {
              // store the bitmap
-        	   CustomStorage storeFileObj = new CustomStorage();
+        	   CustomStorage storeFileObj = new CustomStorage(getApplicationContext());
         	   String imgPath = storeFileObj.storeImage(bitmap);
         	   // Display filepath as confirmation
         	   TextView fileUploadTextView = (TextView) findViewById(R.id.textView_camera_filename);

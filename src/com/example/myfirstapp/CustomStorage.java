@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
@@ -13,9 +14,13 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class CustomStorage {
+//	http://stackoverflow.com/a/14681859
+	Context mContextCustomStorage = null;
 
-	public CustomStorage() {
+	public CustomStorage(Context context) {
 		// TODO Auto-generated constructor stub
+		mContextCustomStorage = context;
+		Log.d("CustomStorage - constructor", "context:" + mContextCustomStorage.getPackageName());
 	}
 	public static final int MEDIA_TYPE_IMAGE = 1;
 	public static final int MEDIA_TYPE_VIDEO = 2;
@@ -66,8 +71,7 @@ public class CustomStorage {
 	    return mediaFile;
 	}
    public String storeImage(Bitmap bitmap){
-     CustomStorage storeFileObj = new CustomStorage();
-     File imgFile = storeFileObj.getOutputMediaFile(1);
+     File imgFile = this.getOutputMediaFile(1);
      // http://stackoverflow.com/a/673014
      FileOutputStream imgOutStream = null;
      try {
