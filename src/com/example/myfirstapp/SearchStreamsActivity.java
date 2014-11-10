@@ -40,9 +40,12 @@ public class SearchStreamsActivity extends ActionBarActivity {
 		
 		CustomJson customJsonObj = new CustomJson();
 		String jsonReturnString = customJsonObj.getJsonString(jsonRequestURL);
+		CustomJsonBilderapp customJsonBilderappObj = new CustomJsonBilderapp();
+		String[] mTestThumbUrls = customJsonBilderappObj.loadImagesByStreamType("search", jsonRequestURL);
+		Log.i(this.getClass().getSimpleName(), "mTestThumbUrls: " + mTestThumbUrls.toString());
 		// Set the text view as the activity layout
 		if(true){
-			// Set the text view as the activity layout
+			// set up layout
 			setContentView(R.layout.fragment_search_streams);
 			// get text view for json
 			TextView jsonTextView = (TextView) findViewById(R.id.display_json);
