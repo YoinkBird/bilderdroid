@@ -97,6 +97,7 @@ public class ViewSingleStreamActivity extends Activity {
 				streamType.equals("nearby")){
 			CustomJsonBilderapp customJsonBilderappObj = new CustomJsonBilderapp();
 			String jsonRequestURL = customJsonBilderappObj.getJsonUrlByStreamType(streamType);
+			jsonRequestURL += "&nearby=1" + "&" + getGpsCoordParamString();
 			// Get the JSON Array or Object
 			CustomJson customJsonObj = new CustomJson();
 			JSONArray imgJsonArray = customJsonObj.getJsonArray(jsonRequestURL);
@@ -126,7 +127,7 @@ public class ViewSingleStreamActivity extends Activity {
     	String urlParams = "";
     	String[] geoViewParams = getGpsCoordPair();
     	if(geoViewParams != null){
-    		urlParams += "&lat=" + geoViewParams[0] + "&long=" + geoViewParams[1];
+    		urlParams += "lat=" + geoViewParams[0] + "&long=" + geoViewParams[1];
     		//                	urlParams = urlEncodeTryCatch(urlParams);
     	}
 		return urlParams;

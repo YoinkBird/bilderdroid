@@ -34,6 +34,7 @@ public class CustomJson {
 		return jsonReturnString;
 	}
 	public JSONObject getJsonObject(String httpUrl) {
+		Log.i(this.getClass().getSimpleName(), "parsing " + httpUrl);
 		JSONObject jsonObject = null;
 		//setContentView(R.layout.main);
 		String jsonReturnString = sendHttpRequest(httpUrl);
@@ -48,6 +49,7 @@ public class CustomJson {
 		return jsonObject;
 	}
 	public JSONArray getJsonArray(String httpUrl) {
+		Log.i(this.getClass().getSimpleName(), "parsing " + httpUrl);
 		JSONArray jsonArray = null;
 		//setContentView(R.layout.main);
 		String jsonReturnString = sendHttpRequest(httpUrl);
