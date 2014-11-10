@@ -58,4 +58,15 @@
         android:layout_below="@+id/button_view_all_streams"
         android:text="@string/viewnearbystreams_title_text"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+  <LinearLayout
+    android:orientation="horizontal" android:layout_width="fill_parent" android:gravity="center"
+        android:layout_below="@+id/textView_viewnearbystreams_location"
+    android:layout_height="wrap_content">
+    <Button android:id="@+id/location_forcelocation"
+      android:layout_width="0dp" android:layout_weight="1" android:layout_margin="5dp"
+      android:layout_height="wrap_content" android:text="Force location" />
+    <Button android:id="@+id/location_getlocation"
+      android:layout_width="0dp" android:layout_weight="1" android:layout_margin="5dp"
+      android:layout_height="wrap_content" android:text="Get location" />
+  </LinearLayout>
 </RelativeLayout>

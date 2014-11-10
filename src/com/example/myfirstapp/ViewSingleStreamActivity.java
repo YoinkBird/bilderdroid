@@ -25,17 +25,12 @@ public class ViewSingleStreamActivity extends Activity {
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_location);
+        setContentView(R.layout.fragment_view_nearby_streams);
 
 
         setupButtonListeners("nearby");
     }
     private void setupButtonListeners(String streamType){
-    	((Button) findViewById(R.id.location_refresh)).setOnClickListener(new OnClickListener() {
-    		public void onClick(View v) {
-    			refreshDisplay();
-    		}
-    	});
     	((Button) findViewById(R.id.location_forcelocation)).setOnClickListener(new OnClickListener() {
     		public void onClick(View v) {
     			LocationLibrary.forceLocationUpdate(ViewSingleStreamActivity.this);
@@ -44,18 +39,30 @@ public class ViewSingleStreamActivity extends Activity {
     	});
         ((Button) findViewById(R.id.location_getlocation)).setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
+            	// update text view with GPS coord
 //                LocationLibrary.getLocationUpdate(LocationTestActivity.this);
             	LocationInfo latestInfo = new LocationInfo(getBaseContext());
-                Toast.makeText(getApplicationContext(), "Getting a location update", Toast.LENGTH_SHORT).show();
-                String[] geoViewParams = getGpsCoordPair();
-                String urlParams = null;
-                if(geoViewParams != null){
-                	urlParams += "&lat=" + geoViewParams[0] + "&long=" + geoViewParams[1];
-//                	urlParams = urlEncodeTryCatch(urlParams);
-                }
-                Toast.makeText(getApplicationContext(), "Getting a location update" + urlParams, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "Getting a location update", Toast.LENGTH_SHORT).show();
+            	updateGpsTextView();
             }
         });
+    }
+    public void updateGpsTextView(){
+    	String urlParams = getGpsCoordParamString();
+    	Toast.makeText(getApplicationContext(), "Getting a location update:\n" + urlParams, Toast.LENGTH_SHORT).show();
+    	TextView gpsCoordTxtView = (TextView) findViewById(R.id.textView_viewnearbystreams_location);
+    	gpsCoordTxtView.setText("GPS: " + urlParams);
+
+    }
+    private String getGpsCoordParamString () {
+    	String urlParams = "";
+    	String[] geoViewParams = getGpsCoordPair();
+    	if(geoViewParams != null){
+    		urlParams += "&lat=" + geoViewParams[0] + "&long=" + geoViewParams[1];
+    		//                	urlParams = urlEncodeTryCatch(urlParams);
+    	}
+		return urlParams;
+
     }
     private String[] getGpsCoordPair () {
     	
@@ -105,11 +112,17 @@ public class ViewSingleStreamActivity extends Activity {
     }
 
     private void refreshDisplay(final LocationInfo locationInfo) {
+    	/*
         final View locationTable = findViewById(R.id.location_table);
         final Button buttonShowMap = (Button) findViewById(R.id.location_showmap);
         final TextView locationTextView = (TextView) findViewById(R.id.location_title);
+        */
 
         if (locationInfo.anyLocationDataReceived()) {
+        	// update global field
+        	mLocationInfo = locationInfo;
+        	updateGpsTextView();
+        	/*
             locationTable.setVisibility(View.VISIBLE);
             ((TextView)findViewById(R.id.location_timestamp)).setText(LocationInfo.formatTimeAndDay(locationInfo.lastLocationUpdateTimestamp, true));
             ((TextView)findViewById(R.id.location_latitude)).setText(Float.toString(locationInfo.lastLat));
@@ -129,11 +142,14 @@ public class ViewSingleStreamActivity extends Activity {
                     startActivity(intent);
                 }
             });
+            */
         }
         else {
+        	/*
             locationTable.setVisibility(View.GONE);
             buttonShowMap.setVisibility(View.GONE);
             locationTextView.setText("No locations recorded yet");
+            */
         }
      }
     
