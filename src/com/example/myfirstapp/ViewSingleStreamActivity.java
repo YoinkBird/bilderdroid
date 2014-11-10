@@ -1,17 +1,19 @@
 package com.example.myfirstapp;
 
+import org.json.JSONArray;
+
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +29,23 @@ public class ViewSingleStreamActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_view_nearby_streams);
 
+		// Get the message from the intent
+		Intent intent = getIntent();
+		String streamType = intent.getStringExtra(ViewAllStreamsActivity.STREAMID_SELECTOR);
+		if(streamType == null){
+			streamType = "nearby";
+		}
 
+		// set up gridview
+		GridView gridview = (GridView) findViewById(R.id.gridview);
+		// do something wacky and ultimately add the images to the gridview
+		ImageAdapter tmpImgAdapter = new ImageAdapter(this);
+//		tmpImgAdapter.setThumbUrls(mTestThumbUrls);
+		setGridViewByStreamType(streamType, tmpImgAdapter);
+		// do something wacky
+		gridview.setAdapter(tmpImgAdapter);
+
+		// set up button listeners. "nearby" has no application in this activity
         setupButtonListeners("nearby");
     }
     private void setupButtonListeners(String streamType){
@@ -47,6 +65,27 @@ public class ViewSingleStreamActivity extends Activity {
             }
         });
     }
+    public void setUpGridView(){
+    	
+    }
+	public void setGridViewByStreamType(String streamType, ImageAdapter gridViewImgAdapter){
+		if(
+				streamType.equals("all") ||
+				streamType.equals("search") ||
+				streamType.equals("subscribed") ||
+				streamType.equals("nearby")){
+			CustomJsonBilderapp customJsonBilderappObj = new CustomJsonBilderapp();
+			String jsonRequestURL = customJsonBilderappObj.getJsonUrlByStreamType(streamType);
+			// Get the JSON Array or Object
+			CustomJson customJsonObj = new CustomJson();
+			JSONArray imgJsonArray = customJsonObj.getJsonArray(jsonRequestURL);
+			// set up adapter
+			customJsonBilderappObj.generateGridJson(imgJsonArray, gridViewImgAdapter);
+
+		}
+		
+	}
+
     public void updateGpsTextView(){
     	String urlParams = getGpsCoordParamString();
     	Toast.makeText(getApplicationContext(), "Getting a location update:\n" + urlParams, Toast.LENGTH_SHORT).show();

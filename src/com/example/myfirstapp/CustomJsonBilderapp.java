@@ -133,6 +133,7 @@ public class CustomJsonBilderapp {
 		if(streamType.equals("search")){
 			//TODO: make json format: [{"streamid":"<streamid>","coverurl":"http://<url>"},]
 			//json format: [{"id":"<streamid>", -NO:- "coverurl":"http://<url>"},]
+			jsonRequestURL = "http://fizzenglorp.appspot.com/genericquery?redirect=0&term=";
 			Log.i(this.getClass().getSimpleName(),  "jsonRequestURL for " + streamType + ": " + jsonRequestURL.toString());
 		}
 		// caveat: don't call this without an argument
