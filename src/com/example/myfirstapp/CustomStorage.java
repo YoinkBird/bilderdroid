@@ -55,7 +55,6 @@ public class CustomStorage {
 	    if (type == MEDIA_TYPE_IMAGE){
 	        mediaFile = new File(mediaStorageDir.getPath() + File.separator +
 	        "IMG_"+ timeStamp + ".jpg");
-	        mediaFile = new File(mediaStorageDir.getPath() + File.separator + "test.jpg");
 	    } else if(type == MEDIA_TYPE_VIDEO) {
 	        mediaFile = new File(mediaStorageDir.getPath() + File.separator +
 	        "VID_"+ timeStamp + ".mp4");
@@ -66,7 +65,7 @@ public class CustomStorage {
 
 	    return mediaFile;
 	}
-   public void storeImage(Bitmap bitmap){
+   public String storeImage(Bitmap bitmap){
      CustomStorage storeFileObj = new CustomStorage();
      File imgFile = storeFileObj.getOutputMediaFile(1);
      // http://stackoverflow.com/a/673014
@@ -90,6 +89,7 @@ public class CustomStorage {
      }
 	    Log.d("CustomStorage - storeImage", "file name: " + imgFile.getPath());
 //     Toast.makeText(getApplicationContext(), imgFile.getPath(), Toast.LENGTH_LONG).show();
+	 return imgFile.getPath();
    }
 
 }

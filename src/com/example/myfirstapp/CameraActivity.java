@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 //source: http://www.tutorialspoint.com/android/android_camera.htm
@@ -88,7 +89,10 @@ public class CameraActivity extends Activity {
            public void onClick(View v) {
              // store the bitmap
         	   CustomStorage storeFileObj = new CustomStorage();
-        	   storeFileObj.storeImage(bitmap);
+        	   String imgPath = storeFileObj.storeImage(bitmap);
+        	   // Display filepath as confirmation
+        	   TextView fileUploadTextView = (TextView) findViewById(R.id.textView_camera_filename);
+        	   fileUploadTextView.setText("File:" + imgPath);
         	   // go to 'upload' page
                Intent intent = new Intent(v.getContext(), UploadActivity.class);
                startActivity(intent);

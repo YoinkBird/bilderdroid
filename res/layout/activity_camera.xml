@@ -16,6 +16,11 @@
             android:id="@+id/camera_preview"
             android:layout_width="fill_parent"
             android:layout_height="199dp" />
+         <TextView
+            android:id="@+id/textView_camera_filename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filename" />
          <Button
             android:id="@+id/button_camera_capture"
             android:layout_width="match_parent"
