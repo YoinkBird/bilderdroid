@@ -15,6 +15,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /* Note:
@@ -149,6 +150,30 @@ public class ViewAllStreamsActivity extends Activity {
 		setContentView(layoutId);
                 // configure buttons
 		setupButtonListeners();
+		changeElementsByStreamType(streamType);
+		return;
+	}
+
+	private void changeElementsByStreamType(String streamType){
+		Log.i(this.getClass().getSimpleName(),  "in method: changeElementsByStreamType");
+		Log.i(this.getClass().getSimpleName(),  "streamType: " + streamType);
+		// store the layout id to load - default is 'all streams'
+		int layoutId = R.layout.fragment_view_all_streams;
+		// choose layout based on streamtype
+		if(streamType.equals("all")){
+		}
+		if(streamType.equals("nearby")){
+//            ((TextView)findViewById(R.id.location_latitude)).setText(Float.toString(locationInfo.lastLat));
+//            ((TextView)findViewById(R.id.location_longitude)).setText(Float.toString(locationInfo.lastLong));
+		}
+		if(streamType.equals("subscribed")){
+		}
+		if(streamType.equals("single")){
+			TextView singleStreamTextView_title = (TextView) findViewById(R.id.textView_viewnearbystreams_title);
+			String titleString = (String) singleStreamTextView_title.getText();
+			titleString += getStreamId();
+			singleStreamTextView_title.setText(titleString);
+		}
 		return;
 	}
 	
