@@ -20,12 +20,11 @@ public class CustomUpload {
 	public static void postImage(String filePath){
 		// http://loopj.com/android-async-http/ 
 		// search for "Uploading Files with RequestParams"
-	    File imgFile = new File(Environment.getExternalStorageDirectory().getPath() + "/Pictures/MyCameraApp/test.jpg");
+	    File imgFile = new File(filePath);
 	    RequestParams params = new RequestParams();
 	    try {
 			params.put("streamid", "android_upload_test");
 			params.put("files", imgFile);
-			params.put("files", new File(Environment.getExternalStorageDirectory().getPath() + "/Pictures/MyCameraApp/test.jpg"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -34,6 +33,7 @@ public class CustomUpload {
 	    AsyncHttpClient client = new AsyncHttpClient();
 	    String uploadUrl = null;
 	    // java.net.MalformedURLException: No valid URI scheme was provided // uploadUrl = "fizzenglorp.appspot.com/blueimp_upload?streamid=android_upload_test";
+	    //TODO: move to string resource
 //	    uploadUrl = "http://fizzenglorp.appspot.com/blueimp_upload?streamid=android_upload_test";
 	    uploadUrl = "http://fizzenglorp.appspot.com/blueimp_upload";
 	    Log.d("CustomUpload", "upload attempt " + params.toString());
