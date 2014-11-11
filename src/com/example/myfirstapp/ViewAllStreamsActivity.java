@@ -1,5 +1,8 @@
 package com.example.myfirstapp;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -50,6 +53,7 @@ public class ViewAllStreamsActivity extends Activity {
 		// do something wacky and ultimately add the images to the gridview
 		ImageAdapter tmpImgAdapter = new ImageAdapter(this);
 		tmpImgAdapter.setThumbUrls(mTestThumbUrls);
+		setGridViewByStreamType(displayStreamType, tmpImgAdapter);
 		// do something wacky
 		gridview.setAdapter(tmpImgAdapter);
 
@@ -78,6 +82,23 @@ public class ViewAllStreamsActivity extends Activity {
 				startViewAllStreamsActivity(v, "single", testStreamId);
 			}
 		});
+	}
+	public void setGridViewByStreamType(String streamType, ImageAdapter gridViewImgAdapter){
+		if(
+				streamType.equals("all") ||
+				streamType.equals("search") ||
+				streamType.equals("subscribed") ||
+				streamType.equals("nearby")){
+			CustomJsonBilderapp customJsonBilderappObj = new CustomJsonBilderapp();
+			String jsonRequestURL = customJsonBilderappObj.getJsonUrlByStreamType(streamType);
+			// Get the JSON Array or Object
+			CustomJson customJsonObj = new CustomJson();
+			JSONArray imgJsonArray = customJsonObj.getJsonArray(jsonRequestURL);
+			// set up adapter
+			customJsonBilderappObj.generateGridJson(imgJsonArray, gridViewImgAdapter);
+
+		}
+		
 	}
 
 	@Override
@@ -200,7 +221,7 @@ public class ViewAllStreamsActivity extends Activity {
 			//caveat: if none specified this is not going to be fun
 			searchTerm = getStreamId();
 			//TODOne: this returns 'img src=...' for the javascript map; needs to be fixed!
-			jsonRequestURL = "http://fizzenglorp.appspot.com/viewsinglestream?geoview=0&stream_id=" + searchTerm;
+			jsonRequestURL = "http://fizzenglorp.appspot.com/viewsinglestream?geoview=0&stream_id=" + URLEncoder.encode(searchTerm);
 			Log.i(this.getClass().getSimpleName(),  "jsonRequestURL for " + streamType + ": " + jsonRequestURL.toString());
 			// Get the JSON Array or Object
 			CustomJson customJsonObj = new CustomJson();

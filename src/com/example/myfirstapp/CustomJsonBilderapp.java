@@ -17,6 +17,50 @@ public class CustomJsonBilderapp {
 	}
 
 
+	/*
+	 * generate grid-view json
+	 * this means creating two arrays an initialising the ImageAdapter
+	 * a bit hacky, but a quick  solution
+	 */
+	public void generateGridJson(JSONArray jsonImgArray, ImageAdapter gridViewImgAdapter){
+		//json format: [{"streamid":"<streamid>","coverurl":"http://<url>"},]
+		List<String> thumbUrlsArrayList = new ArrayList<String>();
+		List<String> streamIdsArrayList  = new ArrayList<String>();
+
+		// get data from json
+		for(int i = 0; i < jsonImgArray.length(); i++){
+			String imgUrl = null;
+			String streamIdString = null;
+			try {
+				imgUrl = jsonImgArray.getJSONObject(i).getString("coverurl");
+				streamIdString = jsonImgArray.getJSONObject(i).getString("streamid");
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//TODO: check the 'getJsonObject' return types instead of checking for != 'null'
+			if(imgUrl != null && imgUrl != "null"){
+				Log.i(this.getClass().getSimpleName(), "imgUrl: " + imgUrl.toString());
+				thumbUrlsArrayList.add(imgUrl);
+			}
+			if(streamIdString != null && streamIdString != "null"){
+				Log.i(this.getClass().getSimpleName(), "streamIdString: " + streamIdString.toString());
+				streamIdsArrayList.add(streamIdString);
+			}
+		}
+		// prepare to convert ArrayList to array
+		String[] thumbUrlsArray = new String[thumbUrlsArrayList.size()];
+		String[] streamIdsArray = new String[streamIdsArrayList.size()];
+		Log.i(this.getClass().getSimpleName(), thumbUrlsArrayList.toString());
+
+		// set up adapter
+		gridViewImgAdapter.setThumbUrls((String[]) thumbUrlsArrayList.toArray(thumbUrlsArray));
+		gridViewImgAdapter.setStreamIds((String[]) streamIdsArrayList.toArray(streamIdsArray));
+
+//		return  (String[]) thumbUrlsArrayList.toArray();
+		return;
+	}
+	
 	public String[] parseJsonFromViewAllStreams(JSONArray jsonImgArray){
 		//json format: [{"streamid":"<streamid>","coverurl":"http://<url>"},]
 		List<String> thumbUrlsArrayList = new ArrayList<String>();
@@ -77,6 +121,44 @@ public class CustomJsonBilderapp {
 //		return  (String[]) thumbUrlsArrayList.toArray();
 	}
 
+	// TODO: call this from ViewAllStreamsActivity and remove the definition from there
+	public String getJsonUrlByStreamType(String streamType){
+		Log.i(this.getClass().getSimpleName(), "method: getJsonUrlByStreamType");
+		String jsonRequestURL = null;
+		if(streamType.equals("all")){
+			//json format: [{"streamid":"<streamid>","coverurl":"http://<url>"},]
+			jsonRequestURL = "http://fizzenglorp.appspot.com/viewallstreams?redirect=0";
+			Log.i(this.getClass().getSimpleName(),  "jsonRequestURL for " + streamType + ": " + jsonRequestURL.toString());
+		}
+		if(streamType.equals("search")){
+			//TODO: make json format: [{"streamid":"<streamid>","coverurl":"http://<url>"},]
+			//json format: [{"id":"<streamid>", -NO:- "coverurl":"http://<url>"},]
+			Log.i(this.getClass().getSimpleName(),  "jsonRequestURL for " + streamType + ": " + jsonRequestURL.toString());
+		}
+		// caveat: don't call this without an argument
+		if(streamType.equals("single")){
+			String searchTerm = null;
+			//caveat: if none specified this is not going to be fun
+			//TODO:			searchTerm = getStreamId();
+			//TODOne: this returns 'img src=...' for the javascript map; needs to be fixed!
+			jsonRequestURL = "http://fizzenglorp.appspot.com/viewsinglestream?geoview=0&stream_id=" + searchTerm;
+			Log.i(this.getClass().getSimpleName(),  "jsonRequestURL for " + streamType + ": " + jsonRequestURL.toString());
+		}
+		if(streamType.equals("nearby")){
+			//TODO: determine the json format: [{"streamid":"<streamid>","coverurl":"http://<url>"},]
+			//TODO: implement this api; using the 'viewall' for now as a placeholder
+			//IDEA: add a 'nearby=<gpscoord>' to the map-view API 
+			jsonRequestURL = "http://fizzenglorp.appspot.com/viewallstreams?redirect=0";
+			Log.i(this.getClass().getSimpleName(),  "jsonRequestURL for " + streamType + ": " + jsonRequestURL.toString());
+		}
+		if(streamType.equals("subscribed")){
+			//TODO: determine the json format: [{"streamid":"<streamid>","coverurl":"http://<url>"},]
+			//TODO: implement this api; using the 'viewall' for now as a placeholder
+			jsonRequestURL = "http://fizzenglorp.appspot.com/viewallstreams?redirect=0";
+			Log.i(this.getClass().getSimpleName(),  "jsonRequestURL for " + streamType + ": " + jsonRequestURL.toString());
+		}
+		return jsonRequestURL;
+	}
 	// TODO: call this from ViewAllStreamsActivity and remove the definition from there
 	public String[] loadImagesByStreamType(String streamType){
 		return this.loadImagesByStreamType(streamType, null);

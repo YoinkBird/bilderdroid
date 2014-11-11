@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -19,6 +20,7 @@ public class ImageAdapter extends BaseAdapter {
     private Context mContext;
     private Integer[] mThumbIds;
     private String[] mThumbUrls;
+    private String[] mImgIds;
     
     /*
     // test array of images
@@ -73,6 +75,16 @@ public class ImageAdapter extends BaseAdapter {
     public String getStreamId(int position) {
     	String streamId = "android_grid_test";
     	streamId = "grass";
+
+    	if(mImgIds != null){
+    		// not sure if < or <=
+    		if(position < mImgIds.length){
+    			streamId = mImgIds[position];
+    		}
+//    		streamId = "android_grid_test";
+    		// confirm streamId and position
+    		Log.i(this.getClass().getSimpleName(), "streamId:" + streamId + "position" + mImgIds.length);
+    	}
         return streamId;
     }
     
@@ -86,6 +98,10 @@ public class ImageAdapter extends BaseAdapter {
     public void setThumbUrls(String[] mPassThumbIds){
     	// references to our images
     	mThumbUrls = mPassThumbIds;
+    }
+    public void setStreamIds(String[] mPassThumbIds){
+    	// references to our images
+    	mImgIds = mPassThumbIds;
     }
 
 

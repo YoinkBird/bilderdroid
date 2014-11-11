@@ -24,17 +24,21 @@ public class ViewSingleStreamActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
 
-        ((Button) findViewById(R.id.location_refresh)).setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                refreshDisplay();
-            }
-        });
-        ((Button) findViewById(R.id.location_forcelocation)).setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                LocationLibrary.forceLocationUpdate(ViewSingleStreamActivity.this);
-                Toast.makeText(getApplicationContext(), "Forcing a location update", Toast.LENGTH_SHORT).show();
-            }
-        });
+
+        setupButtonListeners("single");
+    }
+    private void setupButtonListeners(String streamType){
+    	((Button) findViewById(R.id.location_refresh)).setOnClickListener(new OnClickListener() {
+    		public void onClick(View v) {
+    			refreshDisplay();
+    		}
+    	});
+    	((Button) findViewById(R.id.location_forcelocation)).setOnClickListener(new OnClickListener() {
+    		public void onClick(View v) {
+    			LocationLibrary.forceLocationUpdate(ViewSingleStreamActivity.this);
+    			Toast.makeText(getApplicationContext(), "Forcing a location update", Toast.LENGTH_SHORT).show();
+    		}
+    	});
     }
     
     @Override
