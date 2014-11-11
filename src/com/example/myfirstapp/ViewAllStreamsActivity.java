@@ -198,6 +198,18 @@ public class ViewAllStreamsActivity extends Activity {
 		return;
 	}
 	
+	// urlencode - put in method to abstract out the try catch
+	private String urlEncodeTryCatch(String httpUrl){
+		String encodedHttpUrl = null;
+		try {
+			encodedHttpUrl = URLEncoder.encode(httpUrl, "UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Log.i(this.getClass().getSimpleName(), "httpUrl" + httpUrl + "encoded: " + encodedHttpUrl);
+		return encodedHttpUrl;
+	}
 	// load images based on stream view type (e.g. all, nearby, subscribed, etc)
 	private String[] loadImagesByStreamType(String streamType){
 		Log.i(this.getClass().getSimpleName(),  "in method: loadImagesByStreamType");
@@ -221,7 +233,7 @@ public class ViewAllStreamsActivity extends Activity {
 			//caveat: if none specified this is not going to be fun
 			searchTerm = getStreamId();
 			//TODOne: this returns 'img src=...' for the javascript map; needs to be fixed!
-			jsonRequestURL = "http://fizzenglorp.appspot.com/viewsinglestream?geoview=0&stream_id=" + URLEncoder.encode(searchTerm);
+			jsonRequestURL = "http://fizzenglorp.appspot.com/viewsinglestream?geoview=0&stream_id=" + urlEncodeTryCatch(searchTerm);
 			Log.i(this.getClass().getSimpleName(),  "jsonRequestURL for " + streamType + ": " + jsonRequestURL.toString());
 			// Get the JSON Array or Object
 			CustomJson customJsonObj = new CustomJson();
