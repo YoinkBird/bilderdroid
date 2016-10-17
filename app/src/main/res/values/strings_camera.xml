@@ -2,7 +2,6 @@
 <resources>
 
    <string name="title_activity_camera">Camera1</string>
-   <string name="hello_world">Hello world!</string>
    <string name="Capture">Take a Picture</string>
    <string name="image_save">Use this Picture</string>
 

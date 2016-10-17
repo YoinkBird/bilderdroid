@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="title_activity_view_all_streams">View All Streams</string>
+    <string name="title_activity_view_nearby_streams">View All Streams</string>
 
     <string name="viewnearbystreams_button_more_pictures">More Pictures</string>
     <string name="viewnearbystreams_button_upload">Upload an Image</string>

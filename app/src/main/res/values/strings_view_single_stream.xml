@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="title_activity_view_all_streams">View Single Streams</string>
+    <string name="title_activity_view_single_streams">View Single Streams</string>
 
     <string name="viewsinglestream_title_text">View A Stream: </string>
     <string name="viewsinglestream_button_more_pictures">More Pictures</string>
