@@ -90,7 +90,9 @@
       </intent-filter>  
     </receiver>
     <receiver android:name="com.littlefluffytoys.littlefluffylocationlibrary.PassiveLocationChangedReceiver" android:exported="true" />
-    <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+    <!--
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+    -->
     <!--  /little fluffy location -->
             
         
